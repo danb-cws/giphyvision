@@ -1,0 +1,13 @@
+@import '../../node_modules/normalize.css/normalize.css';
+@import 'variables.scss';
+
+body {
+  padding: 0.5em;
+  background-image: url('../img/cat.jpg');
+}
+
+h1 {
+  background-color: $primary-bgcolor;
+  color: $primary-color;
+  font-style: normal;
+}
