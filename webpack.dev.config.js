@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssNext = require('postcss-cssnext');
 const precss = require('precss');
@@ -61,6 +62,20 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      hash: false,
+      cache: false,
+      template: 'start.html',
+      //minify: { removeComments: false, collapseWhitespace: false },
+      // todo: favicon path
+    }),
+    new HtmlWebpackPlugin({
+      filename: '404.html',
+      template: '404.html',
+      cache: false,
+      //minify: { removeComments: false, collapseWhitespace: false },
+      // todo: favicon path
+    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.CommonsChunkPlugin({

@@ -41,8 +41,8 @@
   "scripts": {
     "webpack-dev": "webpack --display-error-details --config webpack.dev.config.js",
     "webpack-prod": "webpack --display-error-details --config webpack.prod.config.js",
-    "serve-dev": "webpack-dev-server --hot --open --inline --content-base dist --config webpack.dev.config.js",
-    "serve-prod": "webpack-dev-server --hot --open --inline --content-base dist --config webpack.dev.config.js",
+    "serve-dev": "webpack-dev-server --hot --open --inline --content-base dist --progress --colors --config webpack.dev.config.js",
+    "serve-prod": "webpack-dev-server --open --inline --content-base dist --progress --colors --config webpack.prod.config.js",
     "lint": "eslint src/js/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

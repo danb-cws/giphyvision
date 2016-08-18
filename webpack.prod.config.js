@@ -54,6 +54,7 @@ module.exports = {
     new ExtractTextPlugin('./css/[name].css', { allChunks: true }),
     new HtmlWebpackPlugin({
       hash: true,
+      cache: false,
       template: 'start.html',
       minify: { removeComments: true, collapseWhitespace: true },
       // todo: favicon path
