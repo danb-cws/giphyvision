@@ -1,7 +1,7 @@
 {
-  "name": "gifvision",
+  "name": "giphyvision",
   "version": "0.1.0",
-  "description": "gifvision",
+  "description": "giphyvision",
   "main": "./src/js/base.js",
   "devDependencies": {
     "eslint": "^2.4.0",
@@ -21,7 +21,6 @@
     "clean-webpack-plugin": "^0.1.8",
     "compression": "^1.6.1",
     "css-loader": "^0.23.1",
-    "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "image-webpack-loader": "^1.6.3",
@@ -53,7 +52,7 @@
   "keywords": [
     "Dan",
     "Brown",
-    "gifvision"
+    "giphyvision"
   ],
   "author": "Dan Brown",
   "license": "MIT",
