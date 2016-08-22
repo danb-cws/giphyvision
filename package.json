@@ -42,12 +42,12 @@
     "webpack-dev": "webpack --display-error-details --config webpack.dev.config.js",
     "build": "webpack -p --display-error-details --config webpack.prod.config.js",
     "serve-dev": "webpack-dev-server --hot --open --inline --content-base dist --progress --colors --config webpack.dev.config.js",
-    "serve-prod": "webpack-dev-server --open --inline --content-base dist --progress --colors --config webpack.prod.config.js",
-    "start-dev": "SET NODE_ENV=development&& node ./src/server.js",
-    "serve": "SET NODE_ENV=production&& node ./src/server.js",
+    "serve-prod": "webpack-dev-server --open --content-base dist --progress --colors --config webpack.prod.config.js",
     "lint": "eslint src/js/",
+    "deploy": "firebase deploy",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run build & npm run serve"
+    "start": "npm run lint & npm run build & npm run serve-prod",
+    "release": "npm run lint & npm run build & npm run deploy"
   },
   "keywords": [
     "Dan",
