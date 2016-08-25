@@ -140,6 +140,20 @@
             document.getElementById('preview').src = dataURL;
             // place the image value in the text box
             document.getElementById('imageToForm').value = dataURL;
+            // send to sender fn
+            sendImgData(dataURL);
+
+        }
+
+        function sendImgData(base64data) {
+            fetch('https://http://giphyvision.herokuapp.com/cloud-vision?'+base64data, {
+                method: 'get'
+            }).then(function(response) {
+                console.log('response is: ', response);
+            }).catch(function(err) {
+                console.log('Error: ', err);
+            });
+
         }
 
         //Bind a click to a button to capture an image from the video stream
