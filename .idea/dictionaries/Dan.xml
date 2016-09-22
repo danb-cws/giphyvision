@@ -1,3 +1,11 @@
 <component name="ProjectDictionaryState">
-  <dictionary name="Dan" />
+  <dictionary name="Dan">
+    <words>
+      <w>bgcolor</w>
+      <w>dirname</w>
+      <w>minify</w>
+      <w>postcss</w>
+      <w>precss</w>
+    </words>
+  </dictionary>
 </component>
