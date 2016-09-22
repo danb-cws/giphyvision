@@ -95,13 +95,13 @@
     </div>
 
 
-    	<form id="fileform" action="">
-        <select name="type" id="type">
-          <option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>
-        </select><br />
-        <input id="fileInput" type="file" name="fileField"><br /><br />
-        <input type="submit" name="submit" value="Submit">
-      </form>
+    	<!--<form id="fileform" action="">-->
+        <!--<select name="type" id="type">-->
+          <!--<option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>-->
+        <!--</select><br />-->
+        <!--<input id="fileInput" type="file" name="fileField"><br /><br />-->
+        <!--<input type="submit" name="submit" value="Submit">-->
+      <!--</form>-->
 
 	<div id="results"></div>
 
@@ -109,12 +109,12 @@
     <script>
         var video = document.querySelector("#videoElement");
 
-        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia || navigator.mediaDevices.getUserMedia;
 
         if (navigator.getUserMedia) {
             navigator.getUserMedia({video: true}, handleVideo, videoError);
         } else {
-          alert('Failed, no support for getUserMedia');
+            alert('Failed, no support for getUserMedia');
         }
 
         function handleVideo(stream) {
@@ -122,7 +122,7 @@
         }
 
         function videoError(e) {
-            alert('Failed (prob did not allow camera access?), error: '+e);
+            alert('Failed (probz did not allow camera access?), error: '+e);
         }
 
         function captureImage() {
@@ -146,14 +146,26 @@
         }
 
         function sendImgData(base64data) {
-            fetch('https://http://giphyvision.herokuapp.com/cloud-vision?'+base64data, {
-                method: 'get'
+            fetch('https://giphyvision.herokuapp.com/cloud-vision', {
+                method: 'post',
+                mode: 'cors',
+                body: base64data,
+                headers: new Headers({
+                    'Content-Type': 'text/plain'
+                })
             }).then(function(response) {
-                console.log('response is: ', response);
+                if(response.ok) {
+//                    console.log('the response returned to browser is: ', response);
+//                    console.log( response.json());
+                    response.json().then(function(data) {
+                       console.log(data);
+                    });
+                } else {
+                    console.log('Network response was not ok.');
+                }
             }).catch(function(err) {
-                console.log('Error: ', err);
+                console.log('Fetch error returned to client: ', err.message);
             });
-
         }
 
         //Bind a click to a button to capture an image from the video stream

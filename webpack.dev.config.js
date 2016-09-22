@@ -65,7 +65,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       hash: false,
       cache: false,
-      template: 'start.html',
+      template: 'indexPOC.html',
       //minify: { removeComments: false, collapseWhitespace: false },
       // todo: favicon path
     }),
