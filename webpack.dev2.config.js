@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssNext = require('postcss-cssnext');
@@ -10,16 +9,16 @@ const precss = require('precss');
 const htmlMinifyOptions = { removeComments: false, collapseWhitespace: true, collapseInlineTagWhitespace: true };
 
 module.exports = {
-  // context: path.resolve(__dirname, 'src'),
-  context: `${__dirname}/src`,
+  context: path.resolve(__dirname, 'src'),
+  // context: `${__dirname}/src`,
   entry: [
     './js/base.js',
   ],
   output: {
-    // path: path.resolve(__dirname, 'dist'),
-    path: `${__dirname}/dist`,
-    // publicPath: 'http://localhost:8080/', // absolute path req here for images in css to work with sourcemaps on. Must be actual numeric ip to access on lan. TODO: assign at runtime
-    publicPath: '/',
+    path: path.resolve(__dirname, 'dist'),
+    // path: `${__dirname}/dist`,
+    publicPath: 'http://localhost:8080/', // absolute path req here for images in css to work with sourcemaps on. Must be actual numeric ip to access on lan. TODO: assign at runtime
+    // publicPath: '/',
     filename: 'js/[name].js',
   },
   profile: true, // show times for build of each chunk etc, to debug slow builds
@@ -40,8 +39,7 @@ module.exports = {
       {
         test: /\.s?css$/,
         include: /sass/,
-        loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss?sourceMap'),
-        // loader: 'style!css?sourceMap!postcss?sourceMap',
+        loader: 'style!css?sourceMap!postcss?sourceMap',
       },
       {
         test: /.*\.(gif|png|jpe?g|svg)$/i,
@@ -71,29 +69,6 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new ExtractTextPlugin('./css/[name].css', { allChunks: true }),
-    new HtmlWebpackPlugin({
-      hash: false,
-      cache: false,
-      template: 'indexPOC.html',
-      minify: htmlMinifyOptions,
-      // todo: favicon path
-    }),
-    new HtmlWebpackPlugin({
-      hash: false,
-      cache: false,
-      filename: 'index2.html',
-      template: 'index.html',
-      minify: htmlMinifyOptions,
-      // todo: favicon path
-    }),
-    new HtmlWebpackPlugin({
-      filename: '404.html',
-      template: '404.html',
-      cache: false,
-      minify: htmlMinifyOptions,
-      // todo: favicon path
-    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
@@ -102,6 +77,13 @@ module.exports = {
       minChunks: 2, // How many times a dependency must come up before being extracted
     }),
     new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      hash: true,
+      cache: true,
+      template: 'indexPOC.html',
+      minify: htmlMinifyOptions,
+      // todo: favicon path
+    }),
   ],
   resolve: {
     extensions: ['', '.js', '.json', '.css', '.sass'],

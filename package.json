@@ -41,9 +41,9 @@
   },
   "scripts": {
     "webpack-dev": "webpack --display-error-details --config webpack.dev.config.js",
-    "build": "webpack -p --display-error-details --config webpack.prod.config.js",
-    "serve-dev": "webpack-dev-server --hot --open --inline --content-base dist --progress --colors --config webpack.dev.config.js",
-    "serve-prod": "webpack-dev-server -p --open --inline --content-base dist --progress --colors --config webpack.prod.config.js",
+    "build": "webpack --display-error-details --config webpack.prod.config.js",
+    "serve-dev": "webpack-dev-server --hot --inline --open --content-base dist --progress --colors --config webpack.dev2.config.js",
+    "serve-prod": "webpack-dev-server --inline --open --content-base dist --progress --colors --config webpack.prod.config.js",
     "lint": "eslint src/js/",
     "deploy": "firebase deploy",
     "test": "echo \"Error: no test specified\" && exit 1",

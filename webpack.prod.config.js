@@ -6,6 +6,8 @@ const postcssImport = require('postcss-import');
 const postcssNext = require('postcss-cssnext');
 const precss = require('precss');
 
+const htmlMinifyOptions = { removeComments: true, collapseWhitespace: true, collapseInlineTagWhitespace: true };
+
 module.exports = {
   context: `${__dirname}/src`,
   entry: [
@@ -14,9 +16,13 @@ module.exports = {
   output: {
     path: `${__dirname}/dist`,
     publicPath: '/',
+    // publicPath: 'http://localhost:8080/', // absolute path req here for images in css to work with sourcemaps on. Must be actual numeric ip to access on lan. TODO: assign at runtime
     filename: 'js/[name].js',
   },
-  debug: false,
+  // debug: false,
+  // eslint: {
+  //   configFile: './.eslintrc',
+  // },
   module: {
     loaders: [
       {
@@ -38,7 +44,6 @@ module.exports = {
         loader: 'babel',
         query: {
           presets: ['es2015'],
-          compact: false,
         },
       },
     ],
@@ -57,28 +62,40 @@ module.exports = {
       hash: true,
       cache: true,
       template: 'indexPOC.html',
-      minify: { removeComments: true, collapseWhitespace: true },
+      minify: htmlMinifyOptions,
+      // todo: favicon path
+    }),
+    new HtmlWebpackPlugin({
+      hash: true,
+      cache: true,
+      filename: 'index2.html',
+      template: 'index.html',
+      minify: htmlMinifyOptions,
       // todo: favicon path
     }),
     new HtmlWebpackPlugin({
       filename: '404.html',
       template: '404.html',
-      minify: { removeComments: true, collapseWhitespace: true },
+      minify: htmlMinifyOptions,
       // todo: favicon path
     }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'main', // Move dependencies to our main file
-      children: true, // Look for common dependencies in all children,
-      minChunks: 2, // How many times a dependency must come up before being extracted
-    }),
-    new webpack.optimize.MinChunkSizePlugin({
-      minChunkSize: 51200, // ~50kb
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-    }),
+    // new webpack.optimize.DedupePlugin(),
+    // new webpack.optimize.OccurenceOrderPlugin(),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'main', // Move dependencies to our main file
+    //   children: true, // Look for common dependencies in all children,
+    //   minChunks: 2, // How many times a dependency must come up before being extracted
+    // }),
+    // new webpack.optimize.MinChunkSizePlugin({
+    //   minChunkSize: 51200, // ~50kb
+    // }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   minimize: true,
+    //   sourceMap: false,
+    //   compressor: {
+    //     warnings: false,
+    //   },
+    // }),
   ],
   resolve: {
     extensions: ['', '.js', '.json', '.css', '.sass'],

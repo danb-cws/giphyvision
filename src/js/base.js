@@ -3,6 +3,7 @@ if (module.hot) {
 }
 
 import '../sass/base.scss';
+import './test.js';
 
 // import '../img/mickey_small.gif';
 
@@ -11,4 +12,4 @@ import '../sass/base.scss';
 // require('file?name=[path][name].[ext]!../img/mickey_small.gif');
 // require('../img/mickey_small.gif');
 
-console.log('logging from base.js, yes');
+console.log('logging from base.js');
