@@ -1,9 +1,5 @@
-if (module.hot) {
-  module.hot.accept();
-}
-
 import '../sass/base.scss';
-import './test.js';
+import './test';
 
 // import '../img/mickey_small.gif';
 
@@ -13,3 +9,7 @@ import './test.js';
 // require('../img/mickey_small.gif');
 
 console.log('logging from base.js');
+
+if (module.hot) {
+  module.hot.accept();
+}

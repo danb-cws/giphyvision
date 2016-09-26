@@ -3,5 +3,5 @@
  */
 
 
-console.log('from test test');
+console.log('logging from test js');
 
