@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,26 +10,24 @@ const precss = require('precss');
 const htmlMinifyOptions = { removeComments: true, collapseWhitespace: true, collapseInlineTagWhitespace: true };
 
 module.exports = {
-  context: `${__dirname}/src`,
+  context: path.resolve(__dirname, 'src'),
   entry: [
     './js/base.js',
   ],
   output: {
-    path: `${__dirname}/dist`,
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    // publicPath: 'http://localhost:8080/', // absolute path req here for images in css to work with sourcemaps on. Must be actual numeric ip to access on lan. TODO: assign at runtime
     filename: 'js/[name].js',
   },
-  // debug: false,
-  // eslint: {
-  //   configFile: './.eslintrc',
-  // },
+  eslint: {
+    configFile: './.eslintrc',
+  },
   module: {
     loaders: [
       {
         test: /\.s?css$/,
         include: /sass/,
-        loader: ExtractTextPlugin.extract('style', 'css!postcss'),
+        loader: ExtractTextPlugin.extract('style', 'css?minimize!postcss'),
       },
       {
         test: /.*\.(gif|png|jpe?g|svg)$/i,
@@ -58,6 +57,23 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new ExtractTextPlugin('./css/[name].css', { allChunks: true }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'main', // Move dependencies to our main file
+      children: true, // Look for common dependencies in all children,
+      minChunks: 2, // How many times a dependency must come up before being extracted
+    }),
+    new webpack.optimize.MinChunkSizePlugin({
+      minChunkSize: 51200, // ~50kb
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      sourceMap: false,
+      compressor: {
+        warnings: false,
+      },
+    }),
     new HtmlWebpackPlugin({
       hash: true,
       cache: true,
@@ -79,23 +95,6 @@ module.exports = {
       minify: htmlMinifyOptions,
       // todo: favicon path
     }),
-    // new webpack.optimize.DedupePlugin(),
-    // new webpack.optimize.OccurenceOrderPlugin(),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'main', // Move dependencies to our main file
-    //   children: true, // Look for common dependencies in all children,
-    //   minChunks: 2, // How many times a dependency must come up before being extracted
-    // }),
-    // new webpack.optimize.MinChunkSizePlugin({
-    //   minChunkSize: 51200, // ~50kb
-    // }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   minimize: true,
-    //   sourceMap: false,
-    //   compressor: {
-    //     warnings: false,
-    //   },
-    // }),
   ],
   resolve: {
     extensions: ['', '.js', '.json', '.css', '.sass'],
