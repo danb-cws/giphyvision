@@ -39,7 +39,7 @@ module.exports = {
       {
         test: /\.s?css$/,
         include: /sass/,
-        loader: 'style!css?sourceMap!postcss?sourceMap',
+        loader: 'style!css?sourceMap=true&minimise=true!postcss?sourceMap',
       },
       {
         test: /.*\.(gif|png|jpe?g|svg)$/i,
