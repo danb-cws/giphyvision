@@ -10,15 +10,12 @@ const htmlMinifyOptions = { removeComments: false, collapseWhitespace: true, col
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
-  // context: `${__dirname}/src`,
   entry: [
     './js/base.js',
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    // path: `${__dirname}/dist`,
-    publicPath: 'http://localhost:8080/', // absolute path req here for images in css to work with sourcemaps on. Must be actual numeric ip to access on lan. TODO: assign at runtime
-    // publicPath: '/',
+    publicPath: 'http://localhost:8080/', // absolute path req here for assets in css to work with sourcemaps on. Must be actual numeric ip to access over lan.
     filename: 'js/[name].js',
   },
   profile: true, // show times for build of each chunk etc, to debug slow builds
@@ -39,7 +36,7 @@ module.exports = {
       {
         test: /\.s?css$/,
         include: /sass/,
-        loader: 'style!css?sourceMap=true&minimise=true!postcss?sourceMap',
+        loader: 'style!css?sourceMap!postcss?sourceMap',
       },
       {
         test: /.*\.(gif|png|jpe?g|svg)$/i,
