@@ -43,7 +43,7 @@
   "scripts": {
     "build": "webpack --display-error-details --config webpack.prod.config.js",
     "serve-dev": "webpack-dev-server --hot --inline --open --content-base dist --progress --colors --config webpack.dev.config.js",
-    "serve-prod": "webpack-dev-server --inline --open --content-base dist --progress --colors --config webpack.prod.config.js",
+    "serve-prod": "webpack-dev-server --compress --open --content-base dist --progress --colors --config webpack.prod.config.js",
     "lint": "eslint src/js/",
     "deploy": "firebase deploy",
     "test": "echo \"Error: no test specified\" && exit 1",
