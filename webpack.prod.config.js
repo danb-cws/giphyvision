@@ -84,7 +84,7 @@ module.exports = {
       cache: true,
       template: 'indexPOC.html',
       minify: htmlMinifyOptions,
-      // todo: favicon path
+      favicon: './img/favicon.ico',
     }),
     new HtmlWebpackPlugin({
       hash: true,
@@ -92,13 +92,13 @@ module.exports = {
       filename: 'index2.html',
       template: 'index.html',
       minify: htmlMinifyOptions,
-      // todo: favicon path
+      favicon: './img/favicon.ico',
     }),
     new HtmlWebpackPlugin({
       filename: '404.html',
       template: '404.html',
       minify: htmlMinifyOptions,
-      // todo: favicon path
+      favicon: './img/favicon.ico',
     }),
   ],
   resolve: {
