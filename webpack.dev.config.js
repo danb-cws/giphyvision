@@ -75,10 +75,9 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
       hash: true,
-      cache: true,
+      cache: false,
       template: 'indexPOC.html',
       minify: htmlMinifyOptions,
-      // todo: favicon path
     }),
   ],
   resolve: {
