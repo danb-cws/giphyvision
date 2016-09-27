@@ -42,7 +42,6 @@
     "url": "https://github.com/danb-cws/giphyvision"
   },
   "scripts": {
-    "webpack-dev": "webpack --display-error-details --config webpack.dev.config.js",
     "build": "webpack --display-error-details --config webpack.prod.config.js",
     "serve-dev": "webpack-dev-server --hot --inline --open --content-base dist --progress --colors --config webpack.dev.config.js",
     "serve-prod": "webpack-dev-server --inline --open --content-base dist --progress --colors --config webpack.prod.config.js",
