@@ -52,16 +52,18 @@ function captureImage() {
   if (!canvas) {
     canvas = document.createElement('canvas');
     canvas.id = 'hiddenCanvas';
-    canvas.width = videoElem.videoWidth;
-    canvas.height = videoElem.videoHeight;
     document.body.appendChild(canvas);
   }
+  canvas.width = videoElem.videoWidth;
+  canvas.height = videoElem.videoHeight;
   const ctx = canvas.getContext('2d');
   ctx.drawImage(videoElem, 0, 0, canvas.width, canvas.height);
   // save canvas image as data url
   const dataURL = canvas.toDataURL();
   // set preview image src to dataURL
   imagePreview.src = dataURL;
+  // imagePreview.width = videoElem.videoWidth;
+  // imagePreview.height = videoElem.videoHeight;
   // send to sender fn
   sendImgData(dataURL);
 }

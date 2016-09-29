@@ -32,7 +32,7 @@ body {
     right: 0;
     z-index: 100;
     height: $header-height;
-    // padding: $secondary-vertical-spacing $secondary-horizontal-spacing;
+    /* padding: $secondary-vertical-spacing $secondary-horizontal-spacing;*/
     background: yellow;
   }
   .onboarding {
@@ -46,27 +46,28 @@ body {
   }
   .video {
     position: relative;
-    height: calc(100% - 70px);/* Todo: why not $var working in calc? even #{$var} interpolated */
+    height: calc(100% - 7vh);/* Todo: why not $var working in calc? even #{$var} interpolated */
     width: 100%;
     background-image: url('../img/cat.jpg');
     background-position: 50% 50%;
     background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .preview {
+    //display: flex;
+    //align-items: center;
+    //justify-content: center;
+    .preview, .video-element {
       position: absolute;
       z-index: 3;
-      height: 100%;
-      max-height: 100%;
+      object-fit: contain;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: auto;
+      width: 100%;
       max-width: 100%;
+      max-height: 100%;
     }
     .video-element {
-      position: absolute;
       z-index: 2;
-      height: 100%;
-      max-height: 100%;
-      max-width: 100%;
     }
   }
 }
