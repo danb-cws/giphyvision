@@ -1,14 +1,75 @@
 @import '../../node_modules/normalize.css/normalize.css';
 @import 'variables.scss';
 
+/* basics */
+html {
+  height: 100%;
+}
 body {
-  padding: 0.5em;
-  background-image: url('../img/cat.jpg');
+  height: 100%;
+  padding: 0;
+  color: $primary-color;
+  background: $primary-bgcolor;
 }
 
+/* structure and layout */
+
+#hiddenCanvas {
+  display: none;
+}
+
+main {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  max-width: $max-app-width;
+  background: green;
+  header {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: $header-height;
+    // padding: $secondary-vertical-spacing $secondary-horizontal-spacing;
+    background: yellow;
+  }
+  .onboarding {
+    display: none;
+    position: absolute;
+    top: 20%;
+    bottom: 40%;
+    right: 20%;
+    left: 20%;
+    background: #999;
+  }
+  #preview {
+    position: absolute;
+    background: ivory;
+    left: -200px;
+  }
+  #video-element {
+    width: 100%;
+    height: calc(100% - 70px);
+    background-image: url('../img/cat.jpg');
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+}
+
+
+.about {
+  position: absolute;
+  background: teal;
+  right: 100%;
+}
+
+/* text */
 h1 {
-  background-color: $primary-bgcolor;
-  color: $primary-color;
+  display: none;
+  color: $secondary-color;
+  background-color: $secondary-bgcolor;
+  margin: 0;
   font-style: normal;
-  display: flex;
+  border-bottom: 3px solid $secondary-color;
 }

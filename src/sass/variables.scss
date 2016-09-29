@@ -1,2 +1,30 @@
-$primary-color: #0fc;
-$primary-bgcolor: #bad455;
+/* general */
+$font-stack: 'FSMeReg', Helvetica, sans-serif;
+$font-stack-bold: 'FSMeBold', Helvetica, sans-serif;
+$font-stack-light: 'FSMeLight', Helvetica, sans-serif;
+$base-font-size: 16px;
+
+
+/* breakpoints */
+$breakpoint-tablet: 768px;
+$breakpoint-phone: 414px;/* eg, iphone6+ portrait http://mydevice.io/devices/ */
+
+/* colors */
+$primary-color: #800404;
+$primary-bgcolor: #e0d9d7;
+$secondary-color: #0d1080;
+$secondary-bgcolor: #b3d3cc;
+
+
+
+/* dimensions */
+$primary-spacing: 1rem;
+$primary-vertical-spacing: $primary-spacing;
+$primary-horizontal-spacing: $primary-spacing;
+
+$secondary-spacing: 0.65rem;
+$secondary-vertical-spacing: $secondary-spacing;
+$secondary-horizontal-spacing: $secondary-spacing;
+
+$max-app-width: 1200px;
+$header-height: 70px;

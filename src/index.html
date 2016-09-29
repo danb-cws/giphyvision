@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Giphyvision</title>
-    <meta name=viewport content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-    <section class="intro">
+<head>
+  <meta charset="utf-8">
+  <title>Giphyvision</title>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <main>
+    <header>
       <h1>GiphyVision</h1>
-      <p>Welcome to GiphyVision</p>
+      <button class="capture-button">capture</button>
+      <button class="toggle-credits">About</button>
+    </header>
+    <section class="onboarding">
+      <p>Welcome to GiphyVision, the app giving you gifsight into the everyday stuffs around you.</p>
+      <button id="start-btn">Continue</button>
     </section>
-    <section class="about">
-      <p>Powered by:</p>
-      <ul class="poweredby">
-        <li>Giphy</li>
-        <li>Google Cloud Vision</li>
-        <li>Heroku</li>
-        <li>Firebase</li>
-      </ul>
-      <p><strong>GiphyVision</strong> is an exercise in things like:</p>
-    </section>
-  </body>
+    <video autoplay="autoplay" class="video-element">
+      Allow access to camera to continue
+    </video>
+    <img class="preview">
+    </img>
+
+  </main>
+  <section class="about">
+    <p>Powered by:</p>
+    <ul class="poweredby">
+      <li><a class="giphy" src="#">Giphy</a></li>
+      <li><a class="gloud" src="#">Google Cloud Vision</a></li>
+      <li><a class="heroku" src="#">Heroku</a></li>
+      <li><a class="firebase" src="#">Firebase</a></li>
+    </ul>
+    <p>GiphyVision is a learning project by Dan Brown at Code Workshop Systems</p>
+  </section>
+</body>
 </html>

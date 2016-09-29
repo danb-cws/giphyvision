@@ -82,6 +82,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       hash: true,
       cache: true,
+      filename: 'index2.html',
       template: 'indexPOC.html',
       minify: htmlMinifyOptions,
       favicon: './img/favicon.ico',
@@ -89,7 +90,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       hash: true,
       cache: true,
-      filename: 'index2.html',
       template: 'index.html',
       minify: htmlMinifyOptions,
       favicon: './img/favicon.ico',
@@ -102,7 +102,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['', '.js', '.json', '.css', '.sass'],
+    extensions: ['', '.js', '.json', '.css', '.scss'],
   },
 };
 

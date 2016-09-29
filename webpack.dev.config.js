@@ -76,11 +76,23 @@ module.exports = {
     new HtmlWebpackPlugin({
       hash: true,
       cache: false,
+      filename: 'index2.html',
       template: 'indexPOC.html',
+      minify: htmlMinifyOptions,
+    }),
+    new HtmlWebpackPlugin({
+      hash: true,
+      cache: false,
+      template: 'index.html',
+      minify: htmlMinifyOptions,
+    }),
+    new HtmlWebpackPlugin({
+      filename: '404.html',
+      template: '404.html',
       minify: htmlMinifyOptions,
     }),
   ],
   resolve: {
-    extensions: ['', '.js', '.json', '.css', '.sass'],
+    extensions: ['', '.js', '.json', '.css', '.scss'],
   },
 };
