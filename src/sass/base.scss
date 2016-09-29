@@ -18,18 +18,19 @@ body {
   display: none;
 }
 
-main {
+.giphyvision{
   position: relative;
   margin: 0 auto;
   width: 100%;
   height: 100%;
   max-width: $max-app-width;
   background: green;
-  header {
+  > header {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 100;
     height: $header-height;
     // padding: $secondary-vertical-spacing $secondary-horizontal-spacing;
     background: yellow;
@@ -43,22 +44,36 @@ main {
     left: 20%;
     background: #999;
   }
-  #preview {
-    position: absolute;
-    background: ivory;
-    left: -200px;
-  }
-  #video-element {
+  .video {
+    position: relative;
+    height: calc(100% - 70px);/* Todo: why not $var working in calc? even #{$var} interpolated */
     width: 100%;
-    height: calc(100% - 70px);
     background-image: url('../img/cat.jpg');
     background-position: 50% 50%;
     background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .preview {
+      position: absolute;
+      z-index: 3;
+      height: 100%;
+      max-height: 100%;
+      max-width: 100%;
+    }
+    .video-element {
+      position: absolute;
+      z-index: 2;
+      height: 100%;
+      max-height: 100%;
+      max-width: 100%;
+    }
   }
 }
 
 
 .about {
+  display: none;
   position: absolute;
   background: teal;
   right: 100%;

@@ -6,6 +6,7 @@
 const videoElem = document.querySelector('.video-element');
 const captureBtn = document.querySelector('.capture-button');
 const imagePreview = document.querySelector('.preview');
+let canvas = '';
 
 // lots of prefixes...
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia || navigator.mediaDevices.getUserMedia;
@@ -23,7 +24,6 @@ if (navigator.getUserMedia) {
 } else {
   console.log('Failed, no support for getUserMedia');
 }
-
 
 function sendImgData(base64data) {
   fetch('https://giphyvision.herokuapp.com/cloud-vision', {
@@ -49,13 +49,14 @@ function sendImgData(base64data) {
 }
 
 function captureImage() {
-  const canvas = document.createElement('canvas');
-  canvas.id = 'hiddenCanvas';
-  // add canvas to the body element
-  document.body.appendChild(canvas);
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.id = 'hiddenCanvas';
+    canvas.width = videoElem.videoWidth;
+    canvas.height = videoElem.videoHeight;
+    document.body.appendChild(canvas);
+  }
   const ctx = canvas.getContext('2d');
-  canvas.width = videoElem.videoWidth / 2;
-  canvas.height = videoElem.videoHeight / 2;
   ctx.drawImage(videoElem, 0, 0, canvas.width, canvas.height);
   // save canvas image as data url
   const dataURL = canvas.toDataURL();
