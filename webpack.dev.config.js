@@ -23,6 +23,9 @@ module.exports = {
   devtool: 'source-map',
   eslint: {
     configFile: './.eslintrc',
+    rules: {
+      'no-console': 0,
+    },
   },
   module: {
     preLoaders: [

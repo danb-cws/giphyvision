@@ -1,18 +1,28 @@
-/* GiphyVision client script
-1. feature detect webcam
-2. take image submit to server as base64 */
+/* GiphyVision client script:
 
-// const startBtn = document.querySelector('#start-btn');
-const videoElem = document.querySelector('.video-element');
-const captureBtn = document.querySelector('.capture-button');
-const imagePreview = document.querySelector('.preview');
+
+- UI - go button invokes:
+1. MODULE feature detect webcam, return reference to handleVideo or error.
+Errors: no camera, no support for gUm, camera already in use, permission denied
+
+2. MODULE show video stream, take image and export as base64
+
+3. UI put base64 to preview, button to submit to service
+
+*/
+
+import * as config from './giphyvision-config';
+import initCam from './camera-setup';
+
+// console.log(`module says: ${initCam()}`);
+
 let canvas = '';
-
+initCam();
 // lots of prefixes...
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia || navigator.mediaDevices.getUserMedia;
 
 function handleVideo(stream) {
-  videoElem.src = window.URL.createObjectURL(stream);
+  config.uiVideoElem.src = window.URL.createObjectURL(stream);
 }
 
 function videoError(err) {
@@ -26,7 +36,7 @@ if (navigator.getUserMedia) {
 }
 
 function sendImgData(base64data) {
-  fetch('https://giphyvision.herokuapp.com/cloud-vision', {
+  fetch(config.SERVICEURL, {
     method: 'post',
     mode: 'cors',
     body: base64data,
@@ -52,22 +62,21 @@ function captureImage() {
   if (!canvas) {
     canvas = document.createElement('canvas');
     canvas.id = 'hiddenCanvas';
+    canvas.style = 'display: none';
     document.body.appendChild(canvas);
   }
-  canvas.width = videoElem.videoWidth;
-  canvas.height = videoElem.videoHeight;
+  canvas.width = config.uiVideoElem.videoWidth;
+  canvas.height = config.uiVideoElem.videoHeight;
   const ctx = canvas.getContext('2d');
-  ctx.drawImage(videoElem, 0, 0, canvas.width, canvas.height);
+  ctx.drawImage(config.uiVideoElem, 0, 0, canvas.width, canvas.height);
   // save canvas image as data url
   const dataURL = canvas.toDataURL();
   // set preview image src to dataURL
-  imagePreview.src = dataURL;
-  // imagePreview.width = videoElem.videoWidth;
-  // imagePreview.height = videoElem.videoHeight;
+  config.uiImagePreview.src = dataURL;
   // send to sender fn
   sendImgData(dataURL);
 }
 
 
 // Bind a click to button to capture an image from the video stream
-captureBtn.addEventListener('click', captureImage, false);
+config.uiCaptureBtn.addEventListener('click', captureImage, false);
