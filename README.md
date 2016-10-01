@@ -11,6 +11,7 @@ TODO:
 ~~Initial build of image handling service on Heroku~~
 ~~POC of sending base64 image to gcloud api and getting response on client~~
 Layout 1st pass for client page, more scaffolding
+Module structure
 Service worker and caching
 Screen transition setup
 Scripting for camera permission?

@@ -32,8 +32,9 @@ body {
     background: yellow;
   }
   .onboarding {
-    display: none;
+    // display: none;
     position: absolute;
+    z-index: 999;
     top: 20%;
     bottom: 40%;
     right: 20%;

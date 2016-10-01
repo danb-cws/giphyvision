@@ -12,13 +12,15 @@ Errors: no camera, no support for gUm, camera already in use, permission denied
 */
 
 import * as config from './giphyvision-config';
-import initCam from './camera-setup';
+import { camSetup, camStart } from './camera-setup';
 
-// console.log(`module says: ${initCam()}`);
+console.log(`module says: ${camSetup()}`);
+
 
 let canvas = '';
-initCam();
-// lots of prefixes...
+
+// camStart();
+/* // lots of prefixes...
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia || navigator.mediaDevices.getUserMedia;
 
 function handleVideo(stream) {
@@ -33,7 +35,7 @@ if (navigator.getUserMedia) {
   navigator.getUserMedia({ video: true, audio: false }, handleVideo, videoError);
 } else {
   console.log('Failed, no support for getUserMedia');
-}
+} */
 
 function sendImgData(base64data) {
   fetch(config.SERVICEURL, {
@@ -77,6 +79,14 @@ function captureImage() {
   sendImgData(dataURL);
 }
 
+function activateCam() {
+  camStart();
+  config.uiOnboardingElem.style = 'display: none';
+}
+
+
+// Bind a click to button to start webcam, ask permission
+config.uiStartBtn.addEventListener('click', activateCam, false);
 
 // Bind a click to button to capture an image from the video stream
 config.uiCaptureBtn.addEventListener('click', captureImage, false);
