@@ -12,28 +12,32 @@ Errors: no camera, no support for gUm, camera already in use, permission denied
 */
 
 import * as config from './giphyvision-config';
-import { gUmFeatureDetect, camStart } from './camera-setup';
+import cameraInit from './camera-setup';
 import captureStill from './capture-still';
 import gcloudRequest from './gcloud-request';
 
 
 function activateCam(e) {
   e.preventDefault();
-  // todo: logic here for error handling. Cookie logic?
-
-  if (!gUmFeatureDetect()) {
-    config.uiOnboardingElem.innerHTML = config.errorTxtNoGum;
-  } else {
-    camStart();
-  }
+  cameraInit().then((response) => {
+    config.uiVideoElem.src = window.URL.createObjectURL(response);
+    config.uiOnboardingElem.classList.add('hide');
+  }, (error) => {
+    if (error === 'noGUM') {
+      config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoGum}</p>`;
+    } else {
+      config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtCameraStart} ${error.name} </p>`;
+    }
+  });
 }
+
 
 function captureImageAndSubmit(e) {
   e.preventDefault();
   gcloudRequest(captureStill());
 }
 
-// Bind a click to button to start webcam, ask permission
+// Bind a click to button to start webcam, ask permission etc
 config.uiStartBtn.addEventListener('click', activateCam, false);
 
 // Bind a click to button to capture an image from the video stream

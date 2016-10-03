@@ -5,10 +5,10 @@
  *   if iOS, try file upload?
  */
 
-import * as config from './giphyvision-config';
+// import * as config from './giphyvision-config';
 
 
-export function gUmFeatureDetect() {
+function gUmFeatureDetect() {
   // lots of prefixes...
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia || navigator.mediaDevices.getUserMedia;
   // navigator.getUserMedia = 0;
@@ -18,7 +18,7 @@ export function gUmFeatureDetect() {
   return false;
 }
 
-
+/*
 function handleVideo(stream) {
   // console.log(stream);
   config.uiVideoElem.src = window.URL.createObjectURL(stream);
@@ -29,8 +29,24 @@ function videoError(err) {
   config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtCameraStart} ${err.name} </p>`;
 }
 
-export function camStart() {
+ function camStart() {
   // todo: stop any tracks running, eg mediaStream.getVideoTracks()[0].stop();
   navigator.getUserMedia({ video: { facingMode: 'environment' }, audio: false }, handleVideo, videoError);
-}
+} */
 
+// reafactor to promise
+
+export default function cameraInit() {
+  return new Promise((resolve, reject) => {
+    if (!gUmFeatureDetect()) {
+      reject('noGUM');
+    }
+    function cameraSuccess(stream) {
+      resolve(stream);
+    }
+    function cameraFail(err) {
+      reject(err);
+    }
+    navigator.getUserMedia({ video: { facingMode: 'environment' }, audio: false }, cameraSuccess, cameraFail);
+  });
+}

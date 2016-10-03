@@ -15,4 +15,4 @@ export const SERVICEURL = 'https://giphyvision.herokuapp.com/cloud-vision';
 
 /* messaging */
 export const errorTxtNoGum = 'Unfortunately your browser does not (yet) support "getUserMedia." (includes Safari, old IE).';
-export const errorTxtCameraStart = 'Could not start camera, error:';
+export const errorTxtCameraStart = 'Could not access camera, error:';
