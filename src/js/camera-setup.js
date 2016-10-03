@@ -7,27 +7,30 @@
 
 import * as config from './giphyvision-config';
 
-let output = '';
 
-export default function camStart() {
+export function gUmFeatureDetect() {
   // lots of prefixes...
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia || navigator.mediaDevices.getUserMedia;
   // navigator.getUserMedia = 0;
-
-  function handleVideo(stream) {
-    output = stream;
-    console.log(stream);
-    config.uiVideoElem.src = window.URL.createObjectURL(stream);
-  }
-
-  function videoError(err) {
-    output = `Failed (prob did not allow camera access?), error: ${err.name}`;
-  }
-
   if (navigator.getUserMedia) {
-    navigator.getUserMedia({ video: { facingMode: { exact: 'environment' } }, audio: false }, handleVideo, videoError);
-  } else {
-    output = 'Failed, no support for getUserMedia';
+    return true;
   }
-  return output;
+  return false;
 }
+
+
+function handleVideo(stream) {
+  // console.log(stream);
+  config.uiVideoElem.src = window.URL.createObjectURL(stream);
+  config.uiOnboardingElem.classList.add('hide');
+}
+
+function videoError(err) {
+  config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtCameraStart} ${err.name} </p>`;
+}
+
+export function camStart() {
+  // todo: stop any tracks running, eg mediaStream.getVideoTracks()[0].stop();
+  navigator.getUserMedia({ video: { facingMode: 'environment' }, audio: false }, handleVideo, videoError);
+}
+
