@@ -16,6 +16,7 @@ import cameraInit from './camera-setup';
 import captureStill from './capture-still';
 import gcloudRequest from './gcloud-request';
 
+// const noGUM = false;
 
 function activateCam(e) {
   e.preventDefault();
@@ -23,7 +24,7 @@ function activateCam(e) {
     config.uiVideoElem.src = window.URL.createObjectURL(response);
     config.uiOnboardingElem.classList.add('hide');
   }, (error) => {
-    if (error === 'noGUM') {
+    if (error.noGetUserMediaSupport) {
       config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoGum}</p>`;
     } else {
       config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtCameraStart} ${error.name} </p>`;

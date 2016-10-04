@@ -9,6 +9,7 @@ export const uiVideoElem = document.querySelector('.video-element');
 export const uiStartBtn = document.querySelector('.start-button');
 export const uiCaptureBtn = document.querySelector('.capture-button');
 export const uiImagePreview = document.querySelector('.preview');
+export const uiDebugElem = document.querySelector('.debug');
 
 /* Constants */
 export const SERVICEURL = 'https://giphyvision.herokuapp.com/cloud-vision';
