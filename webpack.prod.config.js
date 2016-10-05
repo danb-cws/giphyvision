@@ -12,7 +12,7 @@ const htmlMinifyOptions = { removeComments: true, collapseWhitespace: true, coll
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: [
-    'whatwg-fetch',
+    'whatwg-fetch', // fetch polyfill
     './js/base.js',
   ],
   output: {
