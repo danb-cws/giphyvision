@@ -1,6 +1,7 @@
 import * as config from './giphyvision-config';
 
 export default function gcloudRequest(base64data) {
+  // console.log(`gcloud request, data is: ${base64data}`);
   fetch(config.SERVICEURL, {
     method: 'post',
     mode: 'cors',

@@ -15,19 +15,30 @@ import * as config from './giphyvision-config';
 import cameraInit from './camera-setup';
 import captureStill from './capture-still';
 import gcloudRequest from './gcloud-request';
+import fileInputFallback from './file-input-fallback';
 
-// const noGUM = false;
 
 function activateCam(e) {
   e.preventDefault();
+  console.log('activateCam');
+  if (typeof Promise === 'undefined') {
+    console.log('no Promises');
+    config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoPromises} </p>`;
+    return;
+  }
   cameraInit().then((response) => {
+    console.log('start gum camera');
     config.uiVideoElem.src = window.URL.createObjectURL(response);
     config.uiOnboardingElem.classList.add('hide');
   }, (error) => {
-    if (error.noGetUserMediaSupport) {
-      config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoGum}</p>`;
-    } else {
+    console.log(`gum cam error: ${error}`);
+    if (error.name !== 'Error') {
+      console.log('gum error');
       config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtCameraStart} ${error.name} </p>`;
+    } else { // no getusermedia, so prob on ios or safari desktop
+      console.log('safari');
+      config.uiOnboardingElem.innerHTML = `<p>${error}</p>`;
+      fileInputFallback();
     }
   });
 }

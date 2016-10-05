@@ -21,6 +21,7 @@ body {
   height: 100%;
   max-width: $max-app-width;
   background: green;
+  overflow: hidden; /*req for ie edge*/
   > header {
     position: absolute;
     bottom: 0;

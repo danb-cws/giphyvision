@@ -12,6 +12,7 @@ const htmlMinifyOptions = { removeComments: true, collapseWhitespace: true, coll
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: [
+    'whatwg-fetch',
     './js/base.js',
   ],
   output: {
