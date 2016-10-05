@@ -20,7 +20,7 @@ body {
   width: 100%;
   height: 100%;
   max-width: $max-app-width;
-  background: green;
+  background: #28051a;
   overflow: hidden; /*req for ie edge*/
   > header {
     position: absolute;
@@ -30,7 +30,7 @@ body {
     z-index: 100;
     height: $header-height;
     /* padding: $secondary-vertical-spacing $secondary-horizontal-spacing;*/
-    background: yellow;
+    background: #202f3a;
   }
   .onboarding {
     position: absolute;
@@ -49,7 +49,7 @@ body {
     position: relative;
     height: calc(100% - 7vh);/* Todo: why not $var working in calc? even #{$var} interpolated */
     width: 100%;
-    background-image: url('../img/cat.jpg');
+    background-image: url('../img/gv-logo.png');
     background-position: 50% 50%;
     background-size: cover;
     //display: flex;

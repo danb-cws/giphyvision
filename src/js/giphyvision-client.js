@@ -31,13 +31,13 @@ function activateCam(e) {
     config.uiVideoElem.src = window.URL.createObjectURL(response);
     config.uiOnboardingElem.classList.add('hide');
   }, (error) => {
-    console.log(`gum cam error: ${error}`);
-    if (error.name !== 'Error') {
+    console.log(`gum cam error: ${error.message}`);
+    if (error.message !== 'noGetUserMediaSupport') {
       console.log('gum error');
       config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtCameraStart} ${error.name} </p>`;
     } else { // no getusermedia, so prob on ios or safari desktop
-      console.log('safari');
-      config.uiOnboardingElem.innerHTML = `<p>${error}</p>`;
+      console.log('nogum, safari');
+      config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoGum}</p>`;
       fileInputFallback();
     }
   });
