@@ -4,11 +4,10 @@ let imgNaturalHeight = 0;
 let imgNaturalWidth = 0;
 let videoNaturalHeight = 0;
 let videoNaturalWidth = 0;
+let containerWidth = 0;
+let containerHeight = 0;
+let containerRatio = 0;
 
-/* function ratioCalc () {
-}*/
-
-export const windowProportion = 'landscape';
 
 export function getDims() {
   config.uiImagePreview.onload = () => {
@@ -26,3 +25,14 @@ export function getDims() {
     console.log(`videoNaturalHeight: ${videoNaturalHeight}`);
   };
 }
+
+
+export function ratioCalc() {
+  containerWidth = config.uiVideo.clientWidth;
+  containerHeight = config.uiVideo.clientHeight;
+  containerRatio = containerWidth / containerHeight;
+  if (containerRatio < 1) {
+    config.uiVideo.classList.toggle('portrait');
+  }
+}
+

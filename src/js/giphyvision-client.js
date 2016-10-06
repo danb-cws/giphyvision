@@ -31,6 +31,7 @@ function activateCam(e) {
     config.uiVideoElem.src = window.URL.createObjectURL(response);
     // need to set style of video here
     mediaHandler.getDims();
+    mediaHandler.ratioCalc();
     console.log(mediaHandler.windowProportion);
     config.uiOnboardingElem.classList.add('hidden');
   }, (error) => {

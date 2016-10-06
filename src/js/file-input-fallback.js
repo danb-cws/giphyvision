@@ -6,7 +6,6 @@
 
 import * as config from './giphyvision-config';
 import * as mediaHandler from './media-handler';
-// todo: add this for no-camera gum support scenario
 
 let fileInput;
 
@@ -28,7 +27,6 @@ function pseudoClickFileInput(event) {
 }
 
 export default function fileInputFallBack() {
-  console.log('fileInput');
   if (!fileInput) {
     const fileInputCopyNode = document.createElement('p');
     fileInputCopyNode.innerHTML = `${config.uiFallbackFileInputCopy}`;
