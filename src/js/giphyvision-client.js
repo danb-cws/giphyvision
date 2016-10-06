@@ -16,25 +16,29 @@ import cameraInit from './camera-setup';
 import captureStill from './capture-still';
 import gcloudRequest from './gcloud-request';
 import fileInputFallback from './file-input-fallback';
+import * as mediaHandler from './media-handler';
 
 
 function activateCam(e) {
   e.preventDefault();
   console.log('activateCam');
   if (typeof Promise === 'undefined') {
-    console.log('no Promises');
     config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoPromises} </p>`;
     return;
   }
   cameraInit().then((response) => {
     console.log('start gum camera');
     config.uiVideoElem.src = window.URL.createObjectURL(response);
-    config.uiOnboardingElem.classList.add('hide');
+    // need to set style of video here
+    mediaHandler.getDims();
+    console.log(mediaHandler.windowProportion);
+    config.uiOnboardingElem.classList.add('hidden');
   }, (error) => {
     console.log(`gum cam error: ${error.message}`);
     if (error.message !== 'noGetUserMediaSupport') {
       console.log('gum error');
       config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtCameraStart} ${error.name} </p>`;
+      fileInputFallback();
     } else { // no getusermedia, so prob on ios or safari desktop
       console.log('nogum, safari');
       config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoGum}</p>`;
