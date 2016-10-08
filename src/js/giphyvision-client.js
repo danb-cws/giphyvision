@@ -17,6 +17,7 @@ import captureStill from './capture-still';
 import gcloudRequest from './gcloud-request';
 import fileInputFallback from './file-input-fallback';
 import * as mediaHandler from './media-handler';
+import debounce from './utils/debounce';
 
 
 function activateCam(e) {
@@ -24,15 +25,14 @@ function activateCam(e) {
   console.log('activateCam');
   if (typeof Promise === 'undefined') {
     config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoPromises} </p>`;
-    return;
+    // return;
   }
+  // fileInputFallback();
   cameraInit().then((response) => {
     console.log('start gum camera');
     config.uiVideoElem.src = window.URL.createObjectURL(response);
     // need to set style of video here
-    mediaHandler.getDims();
-    mediaHandler.ratioCalc();
-    console.log(mediaHandler.windowProportion);
+    mediaHandler.mediaOnload();
     config.uiOnboardingElem.classList.add('hidden');
   }, (error) => {
     console.log(`gum cam error: ${error.message}`);
@@ -59,3 +59,9 @@ config.uiStartBtn.addEventListener('click', activateCam, false);
 
 // Bind a click to button to capture an image from the video stream
 config.uiCaptureBtn.addEventListener('click', captureImageAndSubmit, false);
+
+// adds class on portrait, resize also runs on orientationchange
+const debouncedResize = debounce(() => {
+  mediaHandler.aspectRatioSet();
+}, 250);
+window.addEventListener('resize', debouncedResize, false);

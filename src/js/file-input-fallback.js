@@ -11,13 +11,8 @@ let fileInput;
 
 function copyToVideoElem() {
   const inputFilesRef = window.URL.createObjectURL(fileInput.files[0]);
-  // console.log(fileInput.files[0].name);
-  // var head = 'data:image/png;base64,';
-  // var imgFileSize = Math.round((data_url.length - head.length)*3/4) ;
   config.uiImagePreview.src = inputFilesRef;
-  config.uiVideoElem.src = inputFilesRef;
-  mediaHandler.getDims();
-  console.log(mediaHandler.windowProportion);
+  mediaHandler.mediaOnload();
   config.uiOnboardingElem.classList.add('hidden');
 }
 
@@ -27,6 +22,7 @@ function pseudoClickFileInput(event) {
 }
 
 export default function fileInputFallBack() {
+  console.log('Fall back option');
   if (!fileInput) {
     const fileInputCopyNode = document.createElement('p');
     fileInputCopyNode.innerHTML = `${config.uiFallbackFileInputCopy}`;
@@ -38,7 +34,6 @@ export default function fileInputFallBack() {
     fileInput.style.visibility = 'hidden';
     fileInput.addEventListener('change', copyToVideoElem, false);
     config.uiOnboardingElem.appendChild(fileInput);
-
     document.querySelector(`#${config.uiFallbackFileInputLinkId}`).addEventListener('click', pseudoClickFileInput, false);
   }
 }

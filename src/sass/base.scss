@@ -58,21 +58,25 @@ body {
     justify-content: center;*/
     .preview,
     .video-element {
+      display: block;
       position: absolute;
       z-index: 3;
       object-fit: contain;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+    &.landscape .preview,
+    &.landscape .video-element {
       height: 100%;
       width: auto;
       max-width: 100%;
-      max-height: 100%;
     }
     &.portrait .preview,
     &.portrait .video-element {
-        height: auto;
-        width: 100%;
+      height: auto;
+      max-height: 100%;
+      width: 100%;
     }
     .video-element {
       z-index: 2;

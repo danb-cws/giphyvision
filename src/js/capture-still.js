@@ -1,5 +1,7 @@
 import * as config from './giphyvision-config';
+import * as mediaHandler from './media-handler';
 
+let media;
 let dataURL = '';
 let canvas = '';
 let ctx = '';
@@ -11,28 +13,40 @@ export default function captureImage() {
     canvas.id = 'hiddenCanvas';
     canvas.style.display = 'none';
   }
-  // todo: need to size canvas at sensible max, eg smartphone hi rez cam, 640 webcam
+  // todo: need to size canvas at sensible max, eg. smartphone hi rez cam, 640 webcam
   /*  const MAX_WIDTH = 1024;
-  const MAX_HEIGHT = 768;
-  if (width/MAX_WIDTH > height/MAX_HEIGHT) {
-      if (width > MAX_WIDTH) {
-          height *= MAX_WIDTH / width;
-          width = MAX_WIDTH;
-      }
-  } else {
-      if (height > MAX_HEIGHT) {
-          width *= MAX_HEIGHT / height;
-          height = MAX_HEIGHT;
-      }
-  }*/
-
-
-  canvas.width = 1024;// config.uiVideoElem.videoWidth;
-  canvas.height = 768;// config.uiVideoElem.videoHeight;
-  ctx = canvas.getContext('2d');
-  ctx.drawImage(config.uiVideoElem, 0, 0, canvas.width, canvas.height);
-  dataURL = canvas.toDataURL('image/png');
-  config.uiImagePreview.setAttribute('src', config.uiVideoElem.src);
-  // config.uiImagePreview.src = dataURL;
+   const MAX_HEIGHT = 768;
+   if (width/MAX_WIDTH > height/MAX_HEIGHT) {
+   if (width > MAX_WIDTH) {
+   height *= MAX_WIDTH / width;
+   width = MAX_WIDTH;
+   }
+   } else {
+   if (height > MAX_HEIGHT) {
+   width *= MAX_HEIGHT / height;
+   height = MAX_HEIGHT;
+   }
+   }*/
+  media = mediaHandler.whichMedia();
+  // console.log('');
+  if (media === 'video') {
+    console.log('its video');
+    canvas.width = config.uiVideoElem.videoWidth;
+    canvas.height = config.uiVideoElem.videoHeight;
+    ctx = canvas.getContext('2d');
+    ctx.drawImage(config.uiVideoElem, 0, 0, canvas.width, canvas.height);
+    dataURL = canvas.toDataURL('image/png');
+    config.uiImagePreview.src = dataURL;
+  } else if (media === 'image') {
+    canvas.width = config.uiImagePreview.clientWidth;
+    canvas.height = config.uiImagePreview.clientHeight;
+    ctx = canvas.getContext('2d');
+    ctx.drawImage(config.uiImagePreview, 0, 0, canvas.width, canvas.height);
+    dataURL = canvas.toDataURL('image/png');
+  }
   return dataURL;
 }
+
+
+// var head = 'data:image/png;base64,';
+// var imgFileSize = Math.round((dataURL.length - head.length)*3/4) ;
