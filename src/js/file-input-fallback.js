@@ -14,6 +14,7 @@ function copyToVideoElem() {
   config.uiImagePreview.src = inputFilesRef;
   mediaHandler.mediaOnload();
   config.uiOnboardingElem.classList.add('hidden');
+  config.uiCaptureBtn.removeAttribute('disabled');
 }
 
 function pseudoClickFileInput(event) {

@@ -31,6 +31,7 @@ function activateCam(e) {
     config.uiVideoElem.src = window.URL.createObjectURL(response);
     mediaHandler.mediaOnload();
     config.uiOnboardingElem.classList.add('hidden');
+    config.uiCaptureBtn.removeAttribute('disabled');
   }, (error) => {
     if (error.message !== 'noGetUserMediaSupport') {
       config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtCameraStart} ${error.name} </p>`;
