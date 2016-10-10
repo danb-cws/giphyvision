@@ -10,6 +10,9 @@ import './get-user-media-polyfill';
 const constraints = { video: { facingMode: 'environment' }, audio: false };
 
 export default function cameraInit() {
+  if (typeof navigator.mediaDevices.enumerateDevices !== 'undefined') {
+    console.log('enumerateDevices: ', navigator.mediaDevices.enumerateDevices());
+  }
   return new Promise((resolve, reject) => {
     function cameraSuccess(stream) {
       resolve(stream);
@@ -23,5 +26,5 @@ export default function cameraInit() {
   });
 }
 
-// todo: stop any tracks currently running, eg mediaStream.getVideoTracks()[0].stop();
+// todo: consider stop any tracks currently running, eg mediaStream.getVideoTracks()[0].stop();
 

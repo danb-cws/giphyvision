@@ -22,7 +22,6 @@ function pseudoClickFileInput(event) {
 }
 
 export default function fileInputFallBack() {
-  console.log('Fall back option');
   if (!fileInput) {
     const fileInputCopyNode = document.createElement('p');
     fileInputCopyNode.innerHTML = `${config.uiFallbackFileInputCopy}`;

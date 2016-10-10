@@ -22,26 +22,20 @@ import debounce from './utils/debounce';
 
 function activateCam(e) {
   e.preventDefault();
-  console.log('activateCam');
   if (typeof Promise === 'undefined') {
     config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoPromises} </p>`;
-    // return;
+    return;
   }
-  // fileInputFallback();
+
   cameraInit().then((response) => {
-    console.log('start gum camera');
     config.uiVideoElem.src = window.URL.createObjectURL(response);
-    // need to set style of video here
     mediaHandler.mediaOnload();
     config.uiOnboardingElem.classList.add('hidden');
   }, (error) => {
-    console.log(`gum cam error: ${error.message}`);
     if (error.message !== 'noGetUserMediaSupport') {
-      console.log('gum error');
       config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtCameraStart} ${error.name} </p>`;
       fileInputFallback();
     } else { // no getusermedia, so prob on ios or safari desktop
-      console.log('nogum, safari');
       config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoGum}</p>`;
       fileInputFallback();
     }
@@ -60,8 +54,18 @@ config.uiStartBtn.addEventListener('click', activateCam, false);
 // Bind a click to button to capture an image from the video stream
 config.uiCaptureBtn.addEventListener('click', captureImageAndSubmit, false);
 
-// adds class on portrait, resize also runs on orientationchange
+// adds class on portrait (resize also runs on orientationchange)
 const debouncedResize = debounce(() => {
   mediaHandler.aspectRatioSet();
 }, 250);
 window.addEventListener('resize', debouncedResize, false);
+
+// just to wake up dyno potentially a bit earlier in the ui flow (sleeps after 30min on heroku free plan)
+fetch(`${config.SERVICEURL}-ping`, {
+  method: 'post',
+  mode: 'cors',
+  body: 'dummyReq',
+  headers: new Headers({
+    'Content-Type': 'text/plain',
+  }),
+});

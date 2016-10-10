@@ -43,8 +43,10 @@
   },
   "scripts": {
     "build": "webpack --display-error-details --config webpack.prod.config.js",
-    "serve-dev": "webpack-dev-server --hot --inline --host 0.0.0.0 --content-base dist --progress --colors --config webpack.dev.config.js",
-    "serve-prod": "webpack-dev-server --compress --inline --content-base dist --progress --colors --config webpack.prod.config.js",
+    "serve-dev": "webpack-dev-server --hot --host 0.0.0.0 --config webpack.dev.config.js",
+    "serve-dev-secure": "webpack-dev-server --hot --https --host 0.0.0.0 --config webpack.dev.config.js",
+    "serve-prod": "webpack-dev-server --host 0.0.0.0 --config webpack.prod.config.js",
+    "serve-prod-secure": "webpack-dev-server --https --host 0.0.0.0 --config webpack.prod.config.js",
     "lint": "eslint src/js/",
     "deploy": "firebase deploy",
     "test": "echo \"Error: no test specified\" && exit 1",

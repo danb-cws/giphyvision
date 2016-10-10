@@ -20,6 +20,14 @@ module.exports = {
     publicPath: '/',
     filename: 'js/[name].js',
   },
+  devServer: {
+    colors: true,
+    contentBase: './dist',
+    // historyApiFallback: true,
+    compress: true,
+    inline: true,
+    progress: true,
+  },
   eslint: {
     configFile: './.eslintrc',
   },

@@ -28,9 +28,7 @@ export default function captureImage() {
    }
    }*/
   media = mediaHandler.whichMedia();
-  // console.log('');
   if (media === 'video') {
-    console.log('its video');
     canvas.width = config.uiVideoElem.videoWidth;
     canvas.height = config.uiVideoElem.videoHeight;
     ctx = canvas.getContext('2d');

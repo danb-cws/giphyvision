@@ -13,7 +13,6 @@ body {
 }
 
 /* structure and layout */
-
 .giphyvision{
   position: relative;
   margin: 0 auto;
@@ -28,9 +27,14 @@ body {
     left: 0;
     right: 0;
     z-index: 100;
+    padding: 1% 5%;
     height: $header-height;
     /* padding: $secondary-vertical-spacing $secondary-horizontal-spacing;*/
     background: #202f3a;
+  }
+  .debug {
+    display: inline;
+    padding-left: 1rem;
   }
   .onboarding {
     position: absolute;
@@ -52,7 +56,7 @@ body {
     background-image: url('../img/gv-logo.png');
     background-position: 50% 50%;
     background-size: cover;
-    background-color: ivory;
+    background-color: #000;
 /*    display: flex;
     align-items: center;
     justify-content: center;*/
@@ -80,7 +84,7 @@ body {
     }
     .video-element {
       z-index: 2;
-      background-color: teal;
+      // background-color: teal;
     }
   }
 }
