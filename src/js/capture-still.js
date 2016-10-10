@@ -41,6 +41,8 @@ export default function captureImage() {
     ctx = canvas.getContext('2d');
     ctx.drawImage(config.uiImagePreview, 0, 0, canvas.width, canvas.height);
     dataURL = canvas.toDataURL('image/png');
+  } else {
+    console.log('error: media is undefined in media-handler');
   }
   return dataURL;
 }

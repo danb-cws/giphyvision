@@ -19,7 +19,6 @@ import fileInputFallback from './file-input-fallback';
 import * as mediaHandler from './media-handler';
 import debounce from './utils/debounce';
 
-
 function activateCam(e) {
   e.preventDefault();
   if (typeof Promise === 'undefined') {
