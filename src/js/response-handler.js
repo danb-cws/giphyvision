@@ -9,7 +9,7 @@ for now, just take the first match
 import giphyRequest from './giphy-request';
 
 export default function responseHandler(data) {
-  console.log('data in response handler: ', data);
+  // console.log('data in response handler: ', data);
   giphyRequest(data.responses['0'].labelAnnotations['0'].description);
   // console.log(data);
   // recognisedLabelsLength = data.responses[0].labelAnnotations.length;

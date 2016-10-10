@@ -14,7 +14,10 @@ export const uiDebugElem = document.querySelector('.debug');
 export const uiFallbackFileInputLinkId = 'invokeFileBrowser';
 
 /* Constants */
-export const SERVICEURL = 'https://giphyvision.herokuapp.com/cloud-vision';
+export const SERVICE_URL = 'https://giphyvision.herokuapp.com/cloud-vision';
+// 'http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC  ';
+export const GIPHY_API_URL = 'https://api.giphy.com/v1/gifs/search';
+export const GIPHY_API_KEY = 'dc6zaTOxFJmzC';
 
 /* messaging */
 export const errorTxtNoGum = 'Unfortunately your browser doesn\'t (yet) support "getUserMedia" (includes Safari desktop, Safari/Chrome on iOS), which allows integration of the camera output into the UI.';

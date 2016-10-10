@@ -61,7 +61,7 @@ const debouncedResize = debounce(() => {
 window.addEventListener('resize', debouncedResize, false);
 
 // just to wake up dyno potentially a bit earlier in the ui flow (sleeps after 30min on heroku free plan)
-fetch(`${config.SERVICEURL}-ping`, {
+fetch(`${config.SERVICE_URL}-ping`, {
   method: 'post',
   mode: 'cors',
   body: 'dummyReq',

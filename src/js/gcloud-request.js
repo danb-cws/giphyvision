@@ -2,7 +2,7 @@ import * as config from './giphyvision-config';
 import responseHandler from './response-handler';
 
 export default function gcloudRequest(base64data) {
-  fetch(config.SERVICEURL, {
+  fetch(config.SERVICE_URL, {
     method: 'post',
     mode: 'cors',
     body: base64data,
@@ -17,9 +17,9 @@ export default function gcloudRequest(base64data) {
         // config.uiDebugElem.innerHTML = `Recognised: ${data.responses['0'].labelAnnotations['0'].description}`;
       });
     } else {
-      console.log('Network response was not ok.');
+      console.log('gCloud - Network response was not ok.');
     }
   }).catch((err) => {
-    console.log(`Fetch error returned to client: ${err.message}`);
+    console.log(`gCloud - fetch error returned to client: ${err.message}`);
   });
 }
