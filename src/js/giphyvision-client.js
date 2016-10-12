@@ -15,7 +15,7 @@ import * as config from './giphyvision-config';
 import cameraInit from './camera-setup';
 import captureStill from './capture-still';
 import gcloudRequest from './gcloud-request';
-import fileInputFallback from './file-input-fallback';
+import * as fileInputFallback from './file-input-fallback';
 import * as mediaHandler from './media-handler';
 import debounce from './utils/debounce';
 
@@ -34,18 +34,32 @@ function activateCam(e) {
   }, (error) => {
     if (error.message !== 'noGetUserMediaSupport') {
       config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtCameraStart} ${error.name} </p>`;
-      fileInputFallback();
+      fileInputFallback.invokeFileInput();
     } else { // no getusermedia, so prob on ios or safari desktop
       config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoGum}</p>`;
-      fileInputFallback();
+      fileInputFallback.invokeFileInput();
     }
   });
 }
 
-
 function captureImageAndSubmit(e) {
   e.preventDefault();
+  config.uiCaptureBtn.disabled = true;
   gcloudRequest(captureStill());
+}
+
+function againRoute(e) {
+  e.preventDefault();
+  if (mediaHandler.whichMedia() === 'image') {
+    fileInputFallback.pseudoClickFileInput();
+  } else {
+    config.uiStatusElem.innerHTML = '';
+    config.uiRepeatBtn.setAttribute('style', 'display: none');
+    config.uiCaptureBtn.setAttribute('style', 'display: inline-block');
+    config.uiCaptureBtn.disabled = false;
+    config.uiVideoElem.setAttribute('style', 'display: block');
+    config.uiImagePreview.src = '';
+  }
 }
 
 // Bind a click to button to start webcam, ask permission etc
@@ -54,7 +68,10 @@ config.uiStartBtn.addEventListener('click', activateCam, false);
 // Bind a click to button to capture an image from the video stream
 config.uiCaptureBtn.addEventListener('click', captureImageAndSubmit, false);
 
-// adds class on portrait (resize also runs on orientationchange)
+// Bind a click to reset button to try again
+config.uiRepeatBtn.addEventListener('click', againRoute, false);
+
+// adds class on portrait (note resize also runs on orientationchange)
 const debouncedResize = debounce(() => {
   mediaHandler.aspectRatioSet();
 }, 250);

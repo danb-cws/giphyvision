@@ -91,14 +91,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       hash: true,
       cache: true,
-      filename: 'index2.html',
-      template: 'indexPOC.html',
-      minify: htmlMinifyOptions,
-      favicon: './img/favicon.ico',
-    }),
-    new HtmlWebpackPlugin({
-      hash: true,
-      cache: true,
       template: 'index.html',
       minify: htmlMinifyOptions,
       favicon: './img/favicon.ico',

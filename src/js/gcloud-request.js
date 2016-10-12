@@ -2,6 +2,7 @@ import * as config from './giphyvision-config';
 import responseHandler from './response-handler';
 
 export default function gcloudRequest(base64data) {
+  config.uiStatusElem.innerHTML = 'Analysing image...';
   fetch(config.SERVICE_URL, {
     method: 'post',
     mode: 'cors',
@@ -14,12 +15,12 @@ export default function gcloudRequest(base64data) {
       response.json().then((data) => {
         console.log(data);
         responseHandler(data);
-        // config.uiDebugElem.innerHTML = `Recognised: ${data.responses['0'].labelAnnotations['0'].description}`;
+        config.uiStatusElem.innerHTML = `Recognised: ${data.responses['0'].labelAnnotations['0'].description}`;
       });
     } else {
-      console.log('gCloud - Network response was not ok.');
+      config.uiStatusElem.innerHTML('<p>gCloud - Network response was not ok.</p>');
     }
   }).catch((err) => {
-    console.log(`gCloud - fetch error returned to client: ${err.message}`);
+    config.uiStatusElem.innerHTML(`<p>gCloud - fetch error returned to client: ${err.message}</p>`);
   });
 }

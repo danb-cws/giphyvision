@@ -1,6 +1,7 @@
 /*
 processes logic on response json
 extracts search term with business logic etc
+ideas include prioritising logo recognition, blacklist boring matches
 to be revisited...
 for now, just take the first match
 */
@@ -23,7 +24,7 @@ export default function responseHandler(data) {
     // console.log('label: ', label);
     // labels += `${label} `;
   // }
-  // config.uiDebugElem.innerHTML = labels;
+  // config.uiStatusElem.innerHTML = labels;
   //
-  // config.uiDebugElem.innerHTML = `Recognised: ${data.responses['0'].labelAnnotations['0'].description}`;
+  // config.uiStatusElem.innerHTML = `Recognised: ${data.responses['0'].labelAnnotations['0'].description}`;
 }

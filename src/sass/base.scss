@@ -27,15 +27,19 @@ body {
     left: 0;
     right: 0;
     z-index: 100;
-    padding: 1% 5%;
+    padding: 0 5%;
     height: $header-height;
     /* padding: $secondary-vertical-spacing $secondary-horizontal-spacing;*/
     background: #202f3a;
+    .repeat-button {
+      display: none;
+    }
+    .status {
+      display: inline;
+      padding-left: 1rem;
+    }
   }
-  .debug {
-    display: inline;
-    padding-left: 1rem;
-  }
+
   .onboarding {
     position: absolute;
     z-index: 999;
@@ -46,14 +50,15 @@ body {
     padding: 2vh;
     background: #999;
     &.hidden {
-      display: none;
+      /* cant be display: none; or pseudo click on file input wont work */
+      visibility: hidden;
     }
   }
   .video {
     position: relative;
-    height: calc(100% - 7vh);/* Todo: why not $var working in calc? even #{$var} interpolated */
+    height: calc(100% - 3rem);/* Todo: why not $var working in calc? even #{$var} interpolated */
     width: 100%;
-    background-image: url('../img/gv-logo.png');
+    /* background-image: url('../img/gv-logo.png'); */
     background-position: 50% 50%;
     background-size: cover;
     background-color: #000;
@@ -84,7 +89,6 @@ body {
     }
     .video-element {
       z-index: 2;
-      // background-color: teal;
     }
   }
 }
@@ -95,6 +99,12 @@ body {
   position: absolute;
   background: teal;
   right: 100%;
+}
+
+/* general */
+button {
+  font-size: 1.4rem;
+  margin-top: 0.45rem;
 }
 
 /* text */

@@ -1,6 +1,6 @@
 import * as config from './giphyvision-config';
 
-let mediaType;
+let mediaType = 'image';
 let videoAspectRatio = 0;
 let containerWidth = 0;
 let containerHeight = 0;
@@ -25,7 +25,6 @@ export function aspectRatioSet() {
 export function mediaOnload() {
   config.uiImagePreview.onload = () => {
     videoAspectRatio = config.uiImagePreview.naturalWidth / config.uiImagePreview.naturalHeight;
-    mediaType = 'image';
     aspectRatioSet();
   };
   config.uiVideoElem.onloadedmetadata = () => {

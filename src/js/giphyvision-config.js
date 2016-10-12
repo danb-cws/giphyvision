@@ -9,13 +9,13 @@ export const uiVideo = document.querySelector('.video');
 export const uiVideoElem = document.querySelector('.video-element');
 export const uiStartBtn = document.querySelector('.start-button');
 export const uiCaptureBtn = document.querySelector('.capture-button');
+export const uiRepeatBtn = document.querySelector('.repeat-button');
 export const uiImagePreview = document.querySelector('.preview');
-export const uiDebugElem = document.querySelector('.debug');
+export const uiStatusElem = document.querySelector('.status');
 export const uiFallbackFileInputLinkId = 'invokeFileBrowser';
 
 /* Constants */
 export const SERVICE_URL = 'https://giphyvision.herokuapp.com/cloud-vision';
-// 'http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC  ';
 export const GIPHY_API_URL = 'https://api.giphy.com/v1/gifs/search';
 export const GIPHY_API_KEY = 'dc6zaTOxFJmzC';
 

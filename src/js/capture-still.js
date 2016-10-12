@@ -10,8 +10,8 @@ export default function captureImage() {
   if (!canvas) {
     canvas = document.createElement('canvas');
     document.body.appendChild(canvas);
-    canvas.id = 'hiddenCanvas';
     canvas.style.display = 'none';
+    canvas.id = 'hiddenCanvas';
   }
   // todo: need to size canvas at sensible max, eg. smartphone hi rez cam, 640 webcam
   /*  const MAX_WIDTH = 1024;
@@ -28,10 +28,12 @@ export default function captureImage() {
    }
    }*/
   media = mediaHandler.whichMedia();
+  // console.log(`media: ${media}`);
   if (media === 'video') {
     canvas.width = config.uiVideoElem.videoWidth;
     canvas.height = config.uiVideoElem.videoHeight;
     ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(config.uiVideoElem, 0, 0, canvas.width, canvas.height);
     dataURL = canvas.toDataURL('image/png');
     config.uiImagePreview.src = dataURL;
@@ -39,14 +41,14 @@ export default function captureImage() {
     canvas.width = config.uiImagePreview.clientWidth;
     canvas.height = config.uiImagePreview.clientHeight;
     ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(config.uiImagePreview, 0, 0, canvas.width, canvas.height);
     dataURL = canvas.toDataURL('image/png');
   } else {
-    console.log('error: media is undefined in media-handler');
+    config.uiStatusElem.innerHTML('<p>Error: media is undefined in media-handler</p>');
   }
   return dataURL;
 }
-
 
 // var head = 'data:image/png;base64,';
 // var imgFileSize = Math.round((dataURL.length - head.length)*3/4) ;
