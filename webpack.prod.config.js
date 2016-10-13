@@ -7,7 +7,7 @@ const postcssImport = require('postcss-import');
 const postcssNext = require('postcss-cssnext');
 const precss = require('precss');
 
-const htmlMinifyOptions = { removeComments: true, collapseWhitespace: true, collapseInlineTagWhitespace: true };
+const htmlMinifyOptions = { removeComments: true, collapseWhitespace: true, collapseInlineTagWhitespace: false };
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),

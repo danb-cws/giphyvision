@@ -77,7 +77,7 @@ const debouncedResize = debounce(() => {
 }, 250);
 window.addEventListener('resize', debouncedResize, false);
 
-// work out how many cameras, which is back one
+// work out how many cameras, if possible which is back one
 window.addEventListener('load', cameraInit.enumerateDevices, false);
 
 // just to wake up dyno potentially a bit earlier in the ui flow (sleeps after 30min on heroku free plan)
