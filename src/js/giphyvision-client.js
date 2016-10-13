@@ -12,7 +12,7 @@ Errors: no camera, no support for gUm, camera already in use, permission denied
 */
 
 import * as config from './giphyvision-config';
-import cameraInit from './camera-setup';
+import * as cameraInit from './camera-setup';
 import captureStill from './capture-still';
 import gcloudRequest from './gcloud-request';
 import * as fileInputFallback from './file-input-fallback';
@@ -26,7 +26,7 @@ function activateCam(e) {
     return;
   }
 
-  cameraInit().then((response) => {
+  cameraInit.cameraInit().then((response) => {
     config.uiVideoElem.src = window.URL.createObjectURL(response);
     mediaHandler.mediaOnload();
     config.uiOnboardingElem.classList.add('hidden');
@@ -76,6 +76,9 @@ const debouncedResize = debounce(() => {
   mediaHandler.aspectRatioSet();
 }, 250);
 window.addEventListener('resize', debouncedResize, false);
+
+// work out how many cameras, which is back one
+window.addEventListener('load', cameraInit.enumerateDevices, false);
 
 // just to wake up dyno potentially a bit earlier in the ui flow (sleeps after 30min on heroku free plan)
 fetch(`${config.SERVICE_URL}-ping`, {

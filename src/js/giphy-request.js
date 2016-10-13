@@ -19,7 +19,6 @@ export default function giphyRequest(term) {
           config.uiStatusElem.innerHTML = `<p>No gifs matching ${term} :(</p>`;
           return;
         }
-        // const randomGifIndex = Math.floor(Math.random() * (results.length + 1));
         const randomGifIndex = Math.floor(Math.random() * (results.length));
         console.log(`Random gif ${randomGifIndex} out of ${results.length}`);
         const gifUrl = results[randomGifIndex].images.original.url;
