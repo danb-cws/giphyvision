@@ -11,7 +11,7 @@ An image is passed as base64 data to a service on Heroku, the code for which loo
 		projectId: 'xxx',
 	});
 	const vision = gcloud.vision();
-	const types = ['labels', 'logos', 'text'];
+	const types = ['labels'];
 	http.createServer((request, response) => {
 		request.on('error', (err) => {
 			console.error(err);
@@ -33,7 +33,7 @@ An image is passed as base64 data to a service on Heroku, the code for which loo
 				vision.detect(buffer, types, (err, detections, apiResponse) => {
 					console.log('detections? ', detections);
 					console.log('apiresponse? ', apiResponse);
-					response.write(JSON.stringify(apiResponse, null, 4));
+					response.write(JSON.stringify(apiResponse, null, 20));
 					response.end();
 				});
 			});
@@ -46,19 +46,21 @@ An image is passed as base64 data to a service on Heroku, the code for which loo
 TODO:
 
 * ~~Scaffold and build system basics~~
-* ~~Setup Google Cloud acount~~
-* ~~Basic POC camera aquisition~~
+* ~~Setup Google Cloud account~~
+* ~~Basic POC camera acquisition~~
 * ~~Initial build of image handling service on Heroku~~
 * ~~POC of sending base64 image to gcloud api and getting response on client~~
 * ~~Tidy up POC and, refine scaffold and build system~~
 * ~~Layout 1st pass for client page, more scaffolding~~
 * ~~Module refactoring~~
+* ~~file input fallback for UA's with no getUserMedia~~
 * Service worker and caching, PWA structure
 * Screen transition setup, more UI refinement
 * ~~Scripting for camera permission~~
 * defaulting to back camera
 * logic for welcome view? cookie etc
-* response processing logic
-* giphy api request and POC display of gif
+* ~~response processing logic~~
+* ~~giphy api request and POC display of gif~~
+* about screen
 * refinements
 * more refinements...
