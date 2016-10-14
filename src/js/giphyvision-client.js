@@ -17,6 +17,7 @@ import captureStill from './capture-still';
 import gcloudRequest from './gcloud-request';
 import * as fileInputFallback from './file-input-fallback';
 import * as mediaHandler from './media-handler';
+import againRoute from './uiHandler';
 import debounce from './utils/debounce';
 
 function activateCam(e) {
@@ -48,20 +49,6 @@ function captureImageAndSubmit(e) {
   gcloudRequest(captureStill());
 }
 
-function againRoute(e) {
-  e.preventDefault();
-  if (mediaHandler.whichMedia() === 'image') {
-    fileInputFallback.pseudoClickFileInput();
-  } else {
-    config.uiStatusElem.innerHTML = '';
-    config.uiRepeatBtn.setAttribute('style', 'display: none');
-    config.uiCaptureBtn.setAttribute('style', 'display: inline-block');
-    config.uiCaptureBtn.disabled = false;
-    config.uiVideoElem.setAttribute('style', 'display: block');
-    config.uiImagePreview.src = '';
-  }
-}
-
 // Bind a click to button to start webcam, ask permission etc
 config.uiStartBtn.addEventListener('click', activateCam, false);
 
@@ -79,6 +66,13 @@ window.addEventListener('resize', debouncedResize, false);
 
 // work out how many cameras, if possible which is back one
 window.addEventListener('load', cameraInit.enumerateDevices, false);
+
+// error handler on image load, eg if user tries to upload non-image file
+config.uiImagePreview.onerror = () => {
+  config.uiStatusElem.innerHTML = 'Error loading image';
+  config.uiCaptureBtn.setAttribute('style', 'display: none');
+  config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
+};
 
 // just to wake up dyno potentially a bit earlier in the ui flow (sleeps after 30min on heroku free plan)
 fetch(`${config.SERVICE_URL}-ping`, {

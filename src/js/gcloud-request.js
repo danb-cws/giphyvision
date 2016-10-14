@@ -15,12 +15,11 @@ export default function gcloudRequest(base64data) {
       response.json().then((data) => {
         console.log(data);
         responseHandler(data);
-        config.uiStatusElem.innerHTML = `Recognised: ${data.responses['0'].labelAnnotations['0'].description}`;
       });
     } else {
-      config.uiStatusElem.innerHTML('<p>gCloud - Network response was not ok.</p>');
+      config.uiStatusElem.innerHTML = 'gCloud - Network response was not ok.';
     }
   }).catch((err) => {
-    config.uiStatusElem.innerHTML(`<p>gCloud - fetch error returned to client: ${err.message}</p>`);
+    config.uiStatusElem.innerHTML = `gCloud - fetch error returned to client: ${err.message}`;
   });
 }

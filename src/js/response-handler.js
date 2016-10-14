@@ -1,30 +1,28 @@
 /*
-processes logic on response json
-extracts search term with business logic etc
-ideas include prioritising logo recognition, blacklist boring matches
+process logic on response json from gCloud vision api
+extracts search term
+future ideas include prioritising logo recognition
 to be revisited...
-for now, just take the first match
+for now, just take the first match that's not in the boringMatches array
 */
 
-// import * as config from './giphyvision-config';
 import giphyRequest from './giphy-request';
 
+let labelsLength;
+const boringMatches = ['room', 'property', 'image', 'black', 'white', 'color', 'interior design', 'real estate', 'person'];
+
 export default function responseHandler(data) {
-  // console.log('data in response handler: ', data);
-  giphyRequest(data.responses['0'].labelAnnotations['0'].description);
-  // console.log(data);
-  // recognisedLabelsLength = data.responses[0].labelAnnotations.length;
-  // for (let i = 0; i <= recognisedLabelsLength; i += 1) {
-    /* eslint-disable */
-    // label = 'data.responses["0"].labelAnnotations["' + i + '"].description';
-    /* eslint-enable */
-    // label = data.responses['0'].labelAnnotations[' + i + '].description;
-    // label = `data.responses['0'].labelAnnotations['${i}'].description `;
-    // label = data.responses[0].labelAnnotations[0].description;
-    // console.log('label: ', label);
-    // labels += `${label} `;
-  // }
-  // config.uiStatusElem.innerHTML = labels;
-  //
-  // config.uiStatusElem.innerHTML = `Recognised: ${data.responses['0'].labelAnnotations['0'].description}`;
+  const labels = data.responses[0].labelAnnotations;
+  if (labels === undefined) {
+    giphyRequest(null); // will invoke error msg
+    return;
+  }
+  labelsLength = labels.length;
+  for (let i = 0; i < labelsLength; i += 1) {
+    if (boringMatches.indexOf(labels[i].description) < 0) {
+      giphyRequest(labels[i].description); // we found a match thats not in the boring list, so submit and bail here
+      return;
+    }
+  }
+  giphyRequest(null); // if labels exist but they are all boring
 }

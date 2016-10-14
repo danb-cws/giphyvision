@@ -16,7 +16,7 @@ export const uiFallbackFileInputLinkId = 'invokeFileBrowser';
 
 /* Constants */
 export const SERVICE_URL = 'https://giphyvision.herokuapp.com/cloud-vision';
-export const GIPHY_API_URL = 'https://api.giphy.com/v1/gifs/search';
+export const GIPHY_API_URL = 'https://api.giphy.com/v1/gifs/translate';
 export const GIPHY_API_KEY = 'dc6zaTOxFJmzC';
 
 /* messaging */
