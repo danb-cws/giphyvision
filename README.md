@@ -3,7 +3,7 @@ Experimenting and learning with device camera, Google Cloud Vision and Giphy API
 
 Objective: use device camera to take a picture of an object etc, submit to Cloud Vision which will return a description, this will be passed to Giphy which returns a... gif
 
-An image is passed as base64 data to a service on Heroku, the code for which looks like:
+An image is passed as base64 data to a service on Heroku, the code for which is in a separate repo but looks like:
 
 	const http = require('http');
 	const gcloud = require('google-cloud')({
