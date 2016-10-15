@@ -8,11 +8,11 @@ import * as config from './giphyvision-config';
 import * as mediaHandler from './media-handler';
 
 let fileInput;
-function copyToVideoElem() {
+function copyToImageElem() {
   const inputFilesRef = window.URL.createObjectURL(fileInput.files[0]);
   config.uiStatusElem.innerHTML = '';
   config.uiRepeatBtn.setAttribute('style', 'display: none');
-  config.uiCaptureBtn.setAttribute('style', 'display: inline-block');
+  config.uiCaptureCtrls.setAttribute('style', 'display: inline-block');
   config.uiCaptureBtn.disabled = false;
   config.uiImagePreview.src = inputFilesRef;
   mediaHandler.mediaOnload();
@@ -41,7 +41,7 @@ export function invokeFileInput() {
     fileInput.accept = 'image/*';
     fileInput.style.visibility = 'hidden';
     fileInput.addEventListener('click', nullFileInput, false);
-    fileInput.addEventListener('change', copyToVideoElem, false);
+    fileInput.addEventListener('change', copyToImageElem, false);
     config.uiOnboardingElem.appendChild(fileInput);
     document.querySelector(`#${config.uiFallbackFileInputLinkId}`).addEventListener('click', pseudoClickFileInput, false);
   }

@@ -31,6 +31,9 @@ body {
     height: $header-height;
     /* padding: $secondary-vertical-spacing $secondary-horizontal-spacing;*/
     background: #202f3a;
+    .capture-controls {
+      display: inline-block;
+    }
     .repeat-button {
       display: none;
     }
@@ -43,10 +46,10 @@ body {
   .onboarding {
     position: absolute;
     z-index: 999;
-    top: 20%;
-    bottom: 40%;
-    right: 20%;
-    left: 20%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     padding: 2vh;
     background: #999;
     &.hidden {

@@ -3,7 +3,6 @@ import * as mediaHandler from './media-handler';
 import * as fileInputFallback from './file-input-fallback';
 
 export default function againRoute(e) {
-  console.log('AGAIN route');
   if (e !== undefined) {
     e.preventDefault();
   }
@@ -12,9 +11,9 @@ export default function againRoute(e) {
   } else {
     config.uiStatusElem.innerHTML = '';
     config.uiRepeatBtn.setAttribute('style', 'display: none');
-    config.uiCaptureBtn.setAttribute('style', 'display: inline-block');
+    config.uiCaptureCtrls.setAttribute('style', 'display: inline-block');
     config.uiCaptureBtn.disabled = false;
     config.uiVideoElem.setAttribute('style', 'display: block');
-    config.uiImagePreview.src = '';
+    config.uiImagePreview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // transparent blank
   }
 }

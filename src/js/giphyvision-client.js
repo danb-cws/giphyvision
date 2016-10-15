@@ -70,7 +70,7 @@ window.addEventListener('load', cameraInit.enumerateDevices, false);
 // error handler on image load, eg if user tries to upload non-image file
 config.uiImagePreview.onerror = () => {
   config.uiStatusElem.innerHTML = 'Error loading image';
-  config.uiCaptureBtn.setAttribute('style', 'display: none');
+  config.uiCaptureCtrls.setAttribute('style', 'display: none');
   config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
 };
 

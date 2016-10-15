@@ -23,7 +23,7 @@ export default function giphyRequest(term) {
           config.uiStatusElem.innerHTML = `No gifs matching ${term} :(`;
           setTimeout(() => {
             config.uiStatusElem.innerHTML = '';
-            config.uiCaptureBtn.setAttribute('style', 'display: none');
+            config.uiCaptureCtrls.setAttribute('style', 'display: none');
             config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
           }, 3000);
           return;
@@ -31,8 +31,8 @@ export default function giphyRequest(term) {
         const gifUrl = results.images.original.url;
         config.uiImagePreview.src = gifUrl;
         config.uiVideoElem.setAttribute('style', 'display: none');
-        config.uiStatusElem.innerHTML = `Result for '${term}'`;
-        config.uiCaptureBtn.setAttribute('style', 'display: none');
+        config.uiStatusElem.innerHTML = `Gif for '${term}'`;
+        config.uiCaptureCtrls.setAttribute('style', 'display: none');
         config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
       });
     } else {

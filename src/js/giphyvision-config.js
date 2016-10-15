@@ -8,11 +8,13 @@ export const uiOnboardingElem = document.querySelector('.onboarding');
 export const uiVideo = document.querySelector('.video');
 export const uiVideoElem = document.querySelector('.video-element');
 export const uiStartBtn = document.querySelector('.start-button');
+export const uiCaptureCtrls = document.querySelector('.capture-controls');
 export const uiCaptureBtn = document.querySelector('.capture-button');
 export const uiRepeatBtn = document.querySelector('.repeat-button');
 export const uiImagePreview = document.querySelector('.preview');
 export const uiStatusElem = document.querySelector('.status');
 export const uiFallbackFileInputLinkId = 'invokeFileBrowser';
+export const uiCameraToggleId = 'camToggle';
 
 /* Constants */
 export const SERVICE_URL = 'https://giphyvision.herokuapp.com/cloud-vision';

@@ -43,6 +43,8 @@ An image is passed as base64 data to a service on Heroku, the code for which is 
 		}
 	}).listen(process.env.PORT || 5000);
 
+This service makes the request to cloud vision with my api key and returns a list of "labelAnnotations" to the clientside code which then makes the request to Giphy.
+
 TODO:
 
 * ~~Scaffold and build system basics~~
