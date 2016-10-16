@@ -15,6 +15,9 @@ export const uiImagePreview = document.querySelector('.preview');
 export const uiStatusElem = document.querySelector('.status');
 export const uiFallbackFileInputLinkId = 'invokeFileBrowser';
 export const uiCameraToggleId = 'camToggle';
+export const uiAbout = document.querySelector('.about');
+export const uiShowAbout = document.querySelector('.show-about');
+export const uiCloseAbout = document.querySelector('.close-about');
 
 /* Constants */
 export const SERVICE_URL = 'https://giphyvision.herokuapp.com/cloud-vision';

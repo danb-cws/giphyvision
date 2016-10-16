@@ -13,24 +13,22 @@ body {
 }
 
 /* structure and layout */
-.giphyvision{
+.giphyvision {
   position: relative;
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  max-width: $max-app-width;
-  background: #28051a;
+  background: #000;
   overflow: hidden; /*req for ie edge*/
   > header {
     position: absolute;
+    box-sizing: border-box;
+    z-index: 2;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 100;
-    padding: 0 5%;
-    height: $header-height;
-    /* padding: $secondary-vertical-spacing $secondary-horizontal-spacing;*/
-    background: #202f3a;
+    padding: $primary-vertical-spacing $primary-horizontal-spacing;
+    background-color: rgba(6, 51, 255, 0.24);
     .capture-controls {
       display: inline-block;
     }
@@ -39,19 +37,20 @@ body {
     }
     .status {
       display: inline;
-      padding-left: 1rem;
+      padding-left: $secondary-horizontal-spacing;
     }
   }
 
   .onboarding {
     position: absolute;
-    z-index: 999;
+    z-index: 2;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
-    padding: 2vh;
-    background: #999;
+    padding: 20vh 10vh;
+    font-size: 3vw;
+    background: #444;
     &.hidden {
       /* cant be display: none; or pseudo click on file input wont work */
       visibility: hidden;
@@ -59,15 +58,10 @@ body {
   }
   .video {
     position: relative;
-    height: calc(100% - 3rem);/* Todo: why not $var working in calc? even #{$var} interpolated */
+    // height: calc(100% - 3rem);/* Todo: why not $var working in calc? even #{$var} interpolated */
+    height: 100%;
     width: 100%;
-    /* background-image: url('../img/gv-logo.png'); */
-    background-position: 50% 50%;
-    background-size: cover;
-    background-color: #000;
-/*    display: flex;
-    align-items: center;
-    justify-content: center;*/
+    z-index: 1;
     .preview,
     .video-element {
       display: block;
@@ -90,9 +84,6 @@ body {
       max-height: 100%;
       width: 100%;
     }
-    .video-element {
-      z-index: 2;
-    }
   }
 }
 
@@ -100,8 +91,24 @@ body {
 .about {
   display: none;
   position: absolute;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20vh 10vh;
   background: teal;
-  right: 100%;
+  .close-about {
+    position: absolute;
+    top: $primary-horizontal-spacing;
+    right: $primary-vertical-spacing;
+    z-index: 11;
+    font-size: 3rem;
+    text-decoration: none;
+  }
+  &.shown{
+    display: block;
+  }
 }
 
 /* general */
@@ -112,10 +119,8 @@ button {
 
 /* text */
 h1 {
-  display: none;
   color: $secondary-color;
-  background-color: $secondary-bgcolor;
-  margin: 0;
-  font-style: normal;
-  border-bottom: 3px solid $secondary-color;
+  margin: -1.6rem 0 0;
+  font-style: italic;
+  font-size: 1rem;
 }

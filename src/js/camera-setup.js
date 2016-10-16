@@ -9,21 +9,20 @@ import * as config from './giphyvision-config';
 import './get-user-media-polyfill';
 
 let cameraId;
-// const cameraId = '32949025b7e252647d4c6294ab19bd75c9607ce6cb83304a2384bedb5e9efa43';
 let videoTrack;
 const availableVideoInputs = [];
 let currCamIndex = 0;
+let camToggleElem;
 
 function getConstraints() {
   return { audio: false, video: { facingMode: 'environment', deviceId: cameraId } };
 }
 
 export function cameraInit() {
-  console.log(`camera init:camerId is: ${cameraId}`);
-  console.log(getConstraints());
+  // console.log(`camera init:camerId is: ${cameraId}`);
+  // console.log(getConstraints());
   return new Promise((resolve, reject) => {
     function cameraSuccess(stream) {
-      // camStream = stream;
       videoTrack = stream.getVideoTracks();
       resolve(stream);
     }
@@ -43,13 +42,6 @@ export function cameraInit() {
 
 function cycleCameras(e) {
   e.preventDefault();
-  // console.log(`ITERATE cams, currCamIndex: ${currCamIndex}`);
-  // console.log('---cam index at posn: ', availableVideoInputs[currCamIndex]);
-/*  if (currCamIndex < (availableVideoInputs.length - 1)) { // cycle through cameras
-    currCamIndex += 1;
-  } else {
-    currCamIndex = 0;
-  }*/
   cameraId = availableVideoInputs[currCamIndex].deviceId;
   videoTrack[0].stop();
   cameraInit().then((response) => {
@@ -69,21 +61,20 @@ export function enumerateDevices() {
         devices.forEach((device) => {
           if (device.kind === 'videoinput') {
             availableVideoInputs.push(device);
-            if (device.label.indexOf('back' || 'rear')) { // set as active
+            if (device.label.indexOf('back' || 'rear')) { // then set as default
               cameraId = device.deviceId;
             }
           }
         });
         if (availableVideoInputs.length > 1) {
-          console.log('multiple cameras detected');
+          // console.log('multiple cameras detected');
           config.uiCaptureCtrls.insertAdjacentHTML('beforeend', `<a href="#" id="${config.uiCameraToggleId}">Toggle</a>`);
-
-          const camToggleElem = document.getElementById(`${config.uiCameraToggleId}`);
+          camToggleElem = document.getElementById(`${config.uiCameraToggleId}`);
           camToggleElem.addEventListener('click', cycleCameras, false);
         }
       })
       .catch((err) => {
-        console.log(`${err.name}: ${err.message}`);
+        console.log(`enumerateDevices error: ${err.name}: ${err.message}`);
       });
   }
 }

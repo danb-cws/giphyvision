@@ -74,6 +74,14 @@ config.uiImagePreview.onerror = () => {
   config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
 };
 
+function toggleAbout(e) {
+  e.preventDefault();
+  config.uiAbout.classList.toggle('shown');
+}
+// Bind a click to h1 or x to toggle about screen (for now)
+config.uiShowAbout.addEventListener('click', toggleAbout, false);
+config.uiCloseAbout.addEventListener('click', toggleAbout, false);
+
 // just to wake up dyno potentially a bit earlier in the ui flow (sleeps after 30min on heroku free plan)
 fetch(`${config.SERVICE_URL}-ping`, {
   method: 'post',

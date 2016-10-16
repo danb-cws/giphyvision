@@ -1,10 +1,12 @@
+@import 'variables.scss';
+
 #camToggle {
   color: #000;
-  background: #ccc;
-  width: 50px;
+  background: #999;
+  text-decoration: none;
   padding: 3px;
   margin-top: 0.45rem;
-  margin-left: 3px;
+  margin-right: $primary-horizontal-spacing;
   position: absolute;
   right: 0;
 }

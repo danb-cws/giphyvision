@@ -3,17 +3,16 @@
 <head>
   <meta charset="utf-8">
   <title>Giphyvision</title>
-  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
   <main class="giphyvision">
     <header>
-      <h1>GiphyVision</h1>
+      <h1 class="show-about">GiphyVision</h1>
       <div class="capture-controls">
         <button class="capture-button" disabled="true">Giphyfy!</button>
       </div>
       <button class="repeat-button">Again!</button>
-      <!--<button class="toggle-credits">About</button>-->
       <p class="status"></p>
     </header>
     <section class="onboarding">
@@ -29,7 +28,7 @@
     </section>
   </main>
   <section class="about">
-    <p>Powered by:</p>
+    <p>GiphyVision is powered by:</p>
     <ul class="poweredby">
       <li><a class="giphy" src="#">Giphy</a></li>
       <li><a class="gloud" src="#">Google Cloud Vision</a></li>
@@ -38,6 +37,7 @@
     </ul>
     <p>GiphyVision is a learning project by Dan Brown</p>
     <p>Code is on <a href="https://github.com/danb-cws/giphyvision">Github</a></p>
+    <a href="#" class="close-about">X</a>
   </section>
 </body>
 </html>
