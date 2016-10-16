@@ -51,6 +51,9 @@ body {
     padding: 20vh 10vh;
     font-size: 3vw;
     background: #444;
+    .start-button {
+      font-size: 3vw;
+    }
     &.hidden {
       /* cant be display: none; or pseudo click on file input wont work */
       visibility: hidden;
@@ -123,4 +126,5 @@ h1 {
   margin: -1.6rem 0 0;
   font-style: italic;
   font-size: 1rem;
+  cursor: pointer;
 }
