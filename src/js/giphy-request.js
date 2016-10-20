@@ -1,5 +1,5 @@
 import * as config from './giphyvision-config';
-import againRoute from './uiHandler';
+// import againRoute from './uiHandler';
 
 let searchString;
 
@@ -7,7 +7,9 @@ export default function giphyRequest(term) {
   if (term === null) {
     config.uiStatusElem.innerHTML = 'Couldn\'t identify anything';
     setTimeout(() => {
-      againRoute();
+      config.uiStatusElem.innerHTML = '';
+      config.uiCaptureCtrls.setAttribute('style', 'display: none');
+      config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
     }, 3000);
     return;
   }
@@ -36,10 +38,20 @@ export default function giphyRequest(term) {
         config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
       });
     } else {
-      config.uiStatusElem.innerHTML = 'Giphy api error - Network response was not ok.';
+      config.uiStatusElem.innerHTML = '<span class="error">Giphy api error - Network response was not "ok".</span>';
+      setTimeout(() => {
+        config.uiStatusElem.innerHTML = '';
+        config.uiCaptureCtrls.setAttribute('style', 'display: none');
+        config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
+      }, 3000);
     }
-  }).catch((err) => {
-    config.uiStatusElem.innerHTML = `Giphy api error - fetch error returned to client: ${err.message}`;
+  }).catch((err) => { // bug: Safari - fetch polyfill dosn't seem to catch err as expected?
+    config.uiStatusElem.innerHTML = `<span class="error">Giphy api error: "${err.message}"</span>`;
+    setTimeout(() => {
+      config.uiStatusElem.innerHTML = '';
+      config.uiCaptureCtrls.setAttribute('style', 'display: none');
+      config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
+    }, 3000);
   });
 }
 

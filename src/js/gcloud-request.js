@@ -1,5 +1,6 @@
 import * as config from './giphyvision-config';
 import responseHandler from './response-handler';
+// import againRoute from './uiHandler';
 
 export default function gcloudRequest(base64data) {
   config.uiStatusElem.innerHTML = 'Analysing image...';
@@ -17,9 +18,19 @@ export default function gcloudRequest(base64data) {
         responseHandler(data);
       });
     } else {
-      config.uiStatusElem.innerHTML = 'gCloud - Network response was not ok.';
+      config.uiStatusElem.innerHTML = '<span class="error">CloudVision - Network response was not ok.</span>';
+      setTimeout(() => {
+        config.uiStatusElem.innerHTML = '';
+        config.uiCaptureCtrls.setAttribute('style', 'display: none');
+        config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
+      }, 3000);
     }
-  }).catch((err) => {
-    config.uiStatusElem.innerHTML = `gCloud - fetch error returned to client: ${err.message}`;
+  }).catch((err) => { // bug: Safari - fetch polyfill dosn't seem to catch err as expected?
+    config.uiStatusElem.innerHTML = `<span class="error">CloudVision error: "${err.message}"</span>`;
+    setTimeout(() => {
+      config.uiStatusElem.innerHTML = '';
+      config.uiCaptureCtrls.setAttribute('style', 'display: none');
+      config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
+    }, 3000);
   });
 }

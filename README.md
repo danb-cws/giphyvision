@@ -57,9 +57,9 @@ TODO:
 * ~~Module refactoring~~
 * ~~file input fallback for UA's with no getUserMedia~~
 * Service worker and caching, PWA structure
-* Screen transition setup, more UI refinement
+* ~~Screen transition basic setup, more UI~~
 * ~~Scripting for camera permission~~
-* defaulting to back camera
+* ~~defaulting to back camera~~
 * logic for welcome view? cookie etc
 * ~~response processing logic~~
 * ~~giphy api request and POC display of gif~~

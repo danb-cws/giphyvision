@@ -21,6 +21,7 @@ import againRoute from './uiHandler';
 import debounce from './utils/debounce';
 
 function activateCam(e) {
+  console.log('++ activate cam fn');
   e.preventDefault();
   if (typeof Promise === 'undefined') {
     config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoPromises} </p>`;
@@ -58,7 +59,7 @@ config.uiCaptureBtn.addEventListener('click', captureImageAndSubmit, false);
 // Bind a click to reset button to try again
 config.uiRepeatBtn.addEventListener('click', againRoute, false);
 
-// adds class on portrait (note resize also runs on orientationchange)
+// adds class on portrait (note resize event also happens on orientationchange)
 const debouncedResize = debounce(() => {
   mediaHandler.aspectRatioSet();
 }, 250);
@@ -69,7 +70,7 @@ window.addEventListener('load', cameraInit.enumerateDevices, false);
 
 // error handler on image load, eg if user tries to upload non-image file
 config.uiImagePreview.onerror = () => {
-  config.uiStatusElem.innerHTML = 'Error loading image';
+  config.uiStatusElem.innerHTML = '<span class="error">Error loading image</span>';
   config.uiCaptureCtrls.setAttribute('style', 'display: none');
   config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
 };

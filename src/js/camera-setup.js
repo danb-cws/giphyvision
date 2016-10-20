@@ -74,7 +74,7 @@ export function enumerateDevices() {
         }
       })
       .catch((err) => {
-        console.log(`enumerateDevices error: ${err.name}: ${err.message}`);
+        console.log(`!!! enumerateDevices error: ${err.name}: ${err.message}`);
       });
   }
 }

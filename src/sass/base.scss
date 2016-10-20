@@ -4,12 +4,19 @@
 /* basics */
 html {
   height: 100%;
+  touch-action: manipulation;
 }
 body {
   height: 100%;
   padding: 0;
   color: $primary-color;
   background: $primary-bgcolor;
+}
+a, a:link, a:visited, a:active {
+  color: $default-link-color;
+}
+a:hover {
+  color: $default-link-hover-color;
 }
 
 /* structure and layout */
@@ -38,6 +45,9 @@ body {
     .status {
       display: inline;
       padding-left: $secondary-horizontal-spacing;
+      .error {
+        color: $error-color;
+      }
     }
   }
 
@@ -105,9 +115,14 @@ body {
     position: absolute;
     top: $primary-horizontal-spacing;
     right: $primary-vertical-spacing;
+    width: 3vmax;
+    height: 3vmax;
     z-index: 11;
-    font-size: 3rem;
+    font-size: 3vmax;
     text-decoration: none;
+    text-align: center;
+    background-color: $control-background-color;
+    border-radius: 50%;
   }
   &.shown{
     display: block;
