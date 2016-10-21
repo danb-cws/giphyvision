@@ -17,7 +17,7 @@ import captureStill from './capture-still';
 import gcloudRequest from './gcloud-request';
 import * as fileInputFallback from './file-input-fallback';
 import * as mediaHandler from './media-handler';
-import againRoute from './uiHandler';
+import * as uiHandler from './uiHandler';
 import debounce from './utils/debounce';
 
 function activateCam(e) {
@@ -57,7 +57,7 @@ config.uiStartBtn.addEventListener('click', activateCam, false);
 config.uiCaptureBtn.addEventListener('click', captureImageAndSubmit, false);
 
 // Bind a click to reset button to try again
-config.uiRepeatBtn.addEventListener('click', againRoute, false);
+config.uiRepeatBtn.addEventListener('click', uiHandler.againRoute, false);
 
 // adds class on portrait (note resize event also happens on orientationchange)
 const debouncedResize = debounce(() => {
@@ -70,9 +70,10 @@ window.addEventListener('load', cameraInit.enumerateDevices, false);
 
 // error handler on image load, eg if user tries to upload non-image file
 config.uiImagePreview.onerror = () => {
-  config.uiStatusElem.innerHTML = '<span class="error">Error loading image</span>';
-  config.uiCaptureCtrls.setAttribute('style', 'display: none');
-  config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
+  config.uiStatusElem.innerHTML = '<span class="error">Not a valid image</span>';
+  config.uiCaptureBtn.disabled = true;
+  config.uiImagePreview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // transparent blank
+  uiHandler.delayedResetUI();
 };
 
 function toggleAbout(e) {

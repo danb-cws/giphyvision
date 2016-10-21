@@ -35,7 +35,7 @@ a:hover {
     left: 0;
     right: 0;
     padding: $primary-vertical-spacing $primary-horizontal-spacing;
-    background-color: rgba(6, 51, 255, 0.24);
+    background-color: rgba(82, 92, 138, 0.24);
     .capture-controls {
       display: inline-block;
     }
@@ -137,9 +137,9 @@ button {
 
 /* text */
 h1 {
-  color: $secondary-color;
-  margin: -1.6rem 0 0;
+  color: rgba(82, 92, 138, 0.24);
+  margin: -1.78rem 0 0;
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.1rem;
   cursor: pointer;
 }

@@ -1,16 +1,12 @@
 import * as config from './giphyvision-config';
-// import againRoute from './uiHandler';
+import * as uiHandler from './uiHandler';
 
 let searchString;
 
 export default function giphyRequest(term) {
   if (term === null) {
     config.uiStatusElem.innerHTML = 'Couldn\'t identify anything';
-    setTimeout(() => {
-      config.uiStatusElem.innerHTML = '';
-      config.uiCaptureCtrls.setAttribute('style', 'display: none');
-      config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
-    }, 3000);
+    uiHandler.delayedResetUI();
     return;
   }
   config.uiStatusElem.innerHTML = `Giphyfying: ${term}...`;
@@ -23,15 +19,11 @@ export default function giphyRequest(term) {
         const results = data.data;
         if (results.length === 0) {
           config.uiStatusElem.innerHTML = `No gifs matching ${term} :(`;
-          setTimeout(() => {
-            config.uiStatusElem.innerHTML = '';
-            config.uiCaptureCtrls.setAttribute('style', 'display: none');
-            config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
-          }, 3000);
+          uiHandler.delayedResetUI();
           return;
         }
-        const gifUrl = results.images.original.url;
-        config.uiImagePreview.src = gifUrl;
+        // const gifUrl = results.images.original.url;
+        config.uiImagePreview.src = results.images.original.url;
         config.uiVideoElem.setAttribute('style', 'display: none');
         config.uiStatusElem.innerHTML = `Gif for '${term}'`;
         config.uiCaptureCtrls.setAttribute('style', 'display: none');
@@ -39,19 +31,11 @@ export default function giphyRequest(term) {
       });
     } else {
       config.uiStatusElem.innerHTML = '<span class="error">Giphy api error - Network response was not "ok".</span>';
-      setTimeout(() => {
-        config.uiStatusElem.innerHTML = '';
-        config.uiCaptureCtrls.setAttribute('style', 'display: none');
-        config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
-      }, 3000);
+      uiHandler.delayedResetUI();
     }
   }).catch((err) => { // bug: Safari - fetch polyfill dosn't seem to catch err as expected?
     config.uiStatusElem.innerHTML = `<span class="error">Giphy api error: "${err.message}"</span>`;
-    setTimeout(() => {
-      config.uiStatusElem.innerHTML = '';
-      config.uiCaptureCtrls.setAttribute('style', 'display: none');
-      config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
-    }, 3000);
+    uiHandler.delayedResetUI();
   });
 }
 

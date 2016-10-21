@@ -1,6 +1,6 @@
 import * as config from './giphyvision-config';
 import responseHandler from './response-handler';
-// import againRoute from './uiHandler';
+import * as uiHandler from './uiHandler';
 
 export default function gcloudRequest(base64data) {
   config.uiStatusElem.innerHTML = 'Analysing image...';
@@ -19,18 +19,10 @@ export default function gcloudRequest(base64data) {
       });
     } else {
       config.uiStatusElem.innerHTML = '<span class="error">CloudVision - Network response was not ok.</span>';
-      setTimeout(() => {
-        config.uiStatusElem.innerHTML = '';
-        config.uiCaptureCtrls.setAttribute('style', 'display: none');
-        config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
-      }, 3000);
+      uiHandler.delayedResetUI();
     }
   }).catch((err) => { // bug: Safari - fetch polyfill dosn't seem to catch err as expected?
     config.uiStatusElem.innerHTML = `<span class="error">CloudVision error: "${err.message}"</span>`;
-    setTimeout(() => {
-      config.uiStatusElem.innerHTML = '';
-      config.uiCaptureCtrls.setAttribute('style', 'display: none');
-      config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
-    }, 3000);
+    uiHandler.delayedResetUI();
   });
 }

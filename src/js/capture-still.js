@@ -43,7 +43,7 @@ export default function captureImage() {
     ctx.drawImage(config.uiImagePreview, 0, 0, canvas.width, canvas.height);
     dataURL = canvas.toDataURL('image/png');
   } else {
-    config.uiStatusElem.innerHTML('<span class="error">Error: media is undefined in media-handler</span>');
+    config.uiStatusElem.innerHTML('<span class="error">Fatal error: media is undefined in media-handler</span>');
   }
   return dataURL;
 }
