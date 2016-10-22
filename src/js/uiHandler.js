@@ -18,10 +18,13 @@ export function againRoute(e) {
   }
 }
 
+function resetUI() {
+  config.uiStatusElem.innerHTML = '';
+  config.uiCaptureCtrls.setAttribute('style', 'display: none');
+}
+
 export function delayedResetUI() {
   setTimeout(() => {
-    config.uiStatusElem.innerHTML = '';
-    config.uiCaptureCtrls.setAttribute('style', 'display: none');
-    config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
+    resetUI();
   }, 2800);
 }
