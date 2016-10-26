@@ -21,6 +21,7 @@ export function againRoute(e) {
 function resetUI() {
   config.uiStatusElem.innerHTML = '';
   config.uiCaptureCtrls.setAttribute('style', 'display: none');
+  config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
 }
 
 export function delayedResetUI() {

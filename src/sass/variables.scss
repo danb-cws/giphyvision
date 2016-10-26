@@ -14,10 +14,15 @@ $primary-color: #dedbdd;
 $primary-bgcolor: #e0d9d7;
 $secondary-color: #0d1080;
 $secondary-bgcolor: #b3d3cc;
-$control-background-color: #ccc;
+$controls-color: #000;
+$controls-background-color: #ccc;
+$controls-background-hover-color: #ddd;
 $default-link-color: #8da4d1;
-$default-link-hover-color: #f41d32;
+$default-link-hover-color: #5f67f4;
 $error-color: #f00;
+
+/* other UI */
+$default-box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 
 /* dimensions */
 $primary-spacing: 1rem;

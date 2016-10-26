@@ -19,6 +19,40 @@ a:hover {
   color: $default-link-hover-color;
 }
 
+p {
+  margin-top: 0;
+}
+
+button {
+  border: none;
+  border-radius: 0.8vmax;
+  font-size: 3vmax;
+  padding: 0.3vmax 1vmax;
+  border: 1px solid $controls-color;
+  background-color: $controls-background-color;
+  cursor: pointer;
+  box-shadow: $default-box-shadow;
+  text-shadow: 0 -1px 1px #3275bc;
+  &:hover{
+    background-color: $controls-background-hover-color;
+  }
+/*  margin-top: 0.45rem;*/
+}
+
+/* h1 in header */
+h1 {
+  position: fixed;
+  top:  $primary-vertical-spacing;
+  color: rgba(82, 92, 138, 0.54);
+  margin: 0;
+  font-style: italic;
+  font-size: 3vmax;
+  cursor: pointer;
+  &:hover {
+    color: red;
+  }
+}
+
 /* structure and layout */
 .giphyvision {
   position: relative;
@@ -31,20 +65,25 @@ a:hover {
     position: absolute;
     box-sizing: border-box;
     z-index: 2;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: $primary-vertical-spacing $primary-horizontal-spacing;
-    background-color: rgba(82, 92, 138, 0.24);
-    .capture-controls {
+    bottom: $primary-vertical-spacing;
+    left:  $primary-horizontal-spacing;
+    opacity: .8;
+    > * {
       display: inline-block;
+      vertical-align: middle;
+    }
+    .capture-controls {
     }
     .repeat-button {
       display: none;
     }
     .status {
-      display: inline;
-      padding-left: $secondary-horizontal-spacing;
+      font-size: 2vmax;
+      margin: 0 $primary-horizontal-spacing;
+      background-color: #000;
+      p {
+        margin: $secondry-vertical-spacing $primary-horizontal-spacing;
+      }
       .error {
         color: $error-color;
       }
@@ -58,11 +97,15 @@ a:hover {
     bottom: 0;
     right: 0;
     left: 0;
-    padding: 20vh 10vh;
-    font-size: 3vw;
+    padding: 20vh 10vw;
+    font-size: 3.5vmax;
     background: #444;
+    .intro {
+      font-size: 5vmax;
+    }
     .start-button {
-      font-size: 3vw;
+      font-size: 5vmax;
+      padding: 0.5vmax 1.5vmax;
     }
     &.hidden {
       /* cant be display: none; or pseudo click on file input wont work */
@@ -71,7 +114,6 @@ a:hover {
   }
   .video {
     position: relative;
-    // height: calc(100% - 3rem);/* Todo: why not $var working in calc? even #{$var} interpolated */
     height: 100%;
     width: 100%;
     z-index: 1;
@@ -111,35 +153,23 @@ a:hover {
   right: 0;
   padding: 20vh 10vh;
   background: teal;
+  font-size: 2.5vmax;
   .close-about {
     position: absolute;
     top: $primary-horizontal-spacing;
     right: $primary-vertical-spacing;
-    width: 3vmax;
-    height: 3vmax;
+    width: 5vmax;
+    height: 5vmax;
     z-index: 11;
-    font-size: 3vmax;
+    font-size: 5vmax;
     text-decoration: none;
     text-align: center;
-    background-color: $control-background-color;
+    color: $controls-color;
+    background-color: $controls-background-color;
     border-radius: 50%;
+    box-shadow: $default-box-shadow;
   }
   &.shown{
     display: block;
   }
-}
-
-/* general */
-button {
-  font-size: 1.4rem;
-  margin-top: 0.45rem;
-}
-
-/* text */
-h1 {
-  color: rgba(82, 92, 138, 0.24);
-  margin: -1.78rem 0 0;
-  font-style: italic;
-  font-size: 1.1rem;
-  cursor: pointer;
 }
