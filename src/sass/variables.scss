@@ -1,7 +1,8 @@
 /* general */
-$font-stack: 'FSMeReg', Helvetica, sans-serif;
+$font-stack: Helvetica, sans-serif;
+/* $font-stack: 'FSMeReg', Helvetica, sans-serif;
 $font-stack-bold: 'FSMeBold', Helvetica, sans-serif;
-$font-stack-light: 'FSMeLight', Helvetica, sans-serif;
+$font-stack-light: 'FSMeLight', Helvetica, sans-serif; */
 $base-font-size: 16px;
 
 
@@ -15,6 +16,7 @@ $primary-bgcolor: #e0d9d7;
 $secondary-color: #0d1080;
 $secondary-bgcolor: #b3d3cc;
 $controls-color: #000;
+$controls-disabled-color: #999;
 $controls-background-color: #ccc;
 $controls-background-hover-color: #ddd;
 $default-link-color: #8da4d1;
@@ -31,5 +33,5 @@ $primary-vertical-spacing: 0.55rem;
 
 $secondary-spacing: 0.65rem;
 $secondary-horizontal-spacing: $secondary-spacing;
-$secondary-vertical-spacing: 0.45rem;
+$secondary-vertical-spacing: 0.25rem;
 

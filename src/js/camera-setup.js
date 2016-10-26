@@ -40,6 +40,16 @@ export function cameraInit() {
   });
 }
 
+export function cameraStop() {
+  videoTrack[0].stop();
+}
+
+export function cameraRestart() {
+  cameraInit().then((response) => {
+    config.uiVideoElem.src = window.URL.createObjectURL(response);
+  });
+}
+
 function cycleCameras(e) {
   e.preventDefault();
   cameraId = availableVideoInputs[currCamIndex].deviceId;

@@ -13,7 +13,7 @@ function copyToImageElem() {
   config.uiStatusElem.innerHTML = '';
   config.uiRepeatBtn.setAttribute('style', 'display: none');
   config.uiCaptureCtrls.setAttribute('style', 'display: inline-block');
-  config.uiCaptureBtn.disabled = false;
+  config.uiCaptureBtn.removeAttribute('disabled');
   config.uiImagePreview.src = inputFilesRef;
   mediaHandler.mediaOnload();
   config.uiOnboardingElem.classList.add('hidden');

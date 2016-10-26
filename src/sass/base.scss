@@ -5,6 +5,8 @@
 html {
   height: 100%;
   touch-action: manipulation;
+  font-family: $font-stack;
+  font-size: $base-font-size;
 }
 body {
   height: 100%;
@@ -25,18 +27,21 @@ p {
 
 button {
   border: none;
-  border-radius: 0.8vmax;
-  font-size: 3vmax;
-  padding: 0.3vmax 1vmax;
+  border-radius: 0.7vw;
+  font-size: calc(13px + 2vw);
+  padding: 0.2vw 1vw;
   border: 1px solid $controls-color;
   background-color: $controls-background-color;
   cursor: pointer;
   box-shadow: $default-box-shadow;
-  text-shadow: 0 -1px 1px #3275bc;
+  min-width: 13vw;
+  &:disabled{
+    color: $controls-disabled-color;
+    cursor: default;
+  }
   &:hover{
     background-color: $controls-background-hover-color;
   }
-/*  margin-top: 0.45rem;*/
 }
 
 /* h1 in header */
@@ -46,10 +51,11 @@ h1 {
   color: rgba(82, 92, 138, 0.54);
   margin: 0;
   font-style: italic;
-  font-size: 3vmax;
+  font-size: 3vw;
+  font-weight: 200;
   cursor: pointer;
   &:hover {
-    color: red;
+    color: rgba(82, 92, 138, 0.84);
   }
 }
 
@@ -72,17 +78,16 @@ h1 {
       display: inline-block;
       vertical-align: middle;
     }
-    .capture-controls {
-    }
     .repeat-button {
       display: none;
     }
     .status {
-      font-size: 2vmax;
-      margin: 0 $primary-horizontal-spacing;
-      background-color: #000;
-      p {
-        margin: $secondry-vertical-spacing $primary-horizontal-spacing;
+      font-size: calc(13px + 1vw);
+      margin: 0 $secondary-horizontal-spacing;
+      padding: $secondary-vertical-spacing $secondary-horizontal-spacing;
+      background-color: rgba(0, 0, 0, .5);
+      &:empty {
+        display: none;
       }
       .error {
         color: $error-color;
@@ -98,14 +103,14 @@ h1 {
     right: 0;
     left: 0;
     padding: 20vh 10vw;
-    font-size: 3.5vmax;
+    font-size: 3.5vw;
     background: #444;
     .intro {
-      font-size: 5vmax;
+      font-size: 5vw;
     }
     .start-button {
-      font-size: 5vmax;
-      padding: 0.5vmax 1.5vmax;
+      font-size: 5vw;
+      padding: 0.5vw 1.5vw;
     }
     &.hidden {
       /* cant be display: none; or pseudo click on file input wont work */
@@ -153,21 +158,25 @@ h1 {
   right: 0;
   padding: 20vh 10vh;
   background: teal;
-  font-size: 2.5vmax;
+  font-size: 2.5vw;
   .close-about {
     position: absolute;
     top: $primary-horizontal-spacing;
     right: $primary-vertical-spacing;
-    width: 5vmax;
-    height: 5vmax;
+    width: 5vw;
+    height: 5vw;
     z-index: 11;
-    font-size: 5vmax;
+    font-size: 5vw;
     text-decoration: none;
     text-align: center;
     color: $controls-color;
     background-color: $controls-background-color;
     border-radius: 50%;
     box-shadow: $default-box-shadow;
+    &::before {
+      content: '+';
+      line-height: 0;
+    }
   }
   &.shown{
     display: block;

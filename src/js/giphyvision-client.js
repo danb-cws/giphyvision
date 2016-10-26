@@ -46,8 +46,9 @@ function activateCam(e) {
 
 function captureImageAndSubmit(e) {
   e.preventDefault();
-  config.uiCaptureBtn.disabled = true;
+  config.uiCaptureBtn.setAttribute('disabled', 'disabled');
   gcloudRequest(captureStill());
+  cameraInit.cameraStop();
 }
 
 // Bind a click to button to start webcam, ask permission etc
@@ -71,7 +72,7 @@ window.addEventListener('load', cameraInit.enumerateDevices, false);
 // error handler on image load, eg if user tries to upload non-image file
 config.uiImagePreview.onerror = () => {
   config.uiStatusElem.innerHTML = '<span class="error">Not a valid image</span>';
-  config.uiCaptureBtn.disabled = true;
+  config.uiCaptureBtn.setAttribute('disabled', 'disabled');
   config.uiImagePreview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // transparent blank
   uiHandler.delayedResetUI();
 };
