@@ -112,6 +112,16 @@ h1 {
       font-size: 5vw;
       padding: 0.5vw 1.5vw;
     }
+    .copyright {
+      font-size: 30%;
+      color: #5f5f5f;
+      position: absolute;
+      bottom: $primary-vertical-spacing;
+      right: $primary-horizontal-spacing;
+      &:hover {
+        color: #ddd;
+      }
+    }
     &.hidden {
       /* cant be display: none; or pseudo click on file input wont work */
       visibility: hidden;
