@@ -9,7 +9,7 @@ for now, just take the first match that's not in the boringMatches array
 import giphyRequest from './giphy-request';
 
 let labelsLength;
-const boringMatches = ['room', 'property', 'image', 'black', 'white', 'color', 'interior design', 'real estate', 'person'];
+const boringMatches = ['room', 'property', 'image', 'black', 'white', 'color', 'interior design', 'real estate', 'person', 'man made object'];
 
 export default function responseHandler(data) {
   const labels = data.responses[0].labelAnnotations;
