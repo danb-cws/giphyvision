@@ -1,7 +1,7 @@
 @import 'variables.scss';
 
 #camToggle {
-  background-image: url(../img/cam-toggle.svg);
+  background: url(../img/cam-toggle.svg) no-repeat;
   opacity: 0.6;
   width: 8vmax;
   height: 8vmax;
@@ -9,5 +9,5 @@
   overflow: hidden;
   position: absolute;
   left: $primary-horizontal-spacing;
-  top: -190%;
+  top: -210%;
 }
