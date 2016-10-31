@@ -70,4 +70,4 @@ TODO:
 * more refinements...
 
 KNOWN BUGS
-* On ios in standalone (add to homescreen) mode, capture from the camera works fine, but uploading local files results in the canvas.toDataURL returning blank. This works fine in normal safari.
+* Firefox dosn't seem to want to play animated gifs after the first one, subsequent gifs only show first frame. (no idea... "won't fix")
