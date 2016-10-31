@@ -24,6 +24,10 @@ export function aspectRatioSet() {
 }
 export function mediaOnload() {
   config.uiImagePreview.onload = () => {
+    if (config.uiImagePreview.classList.contains('giphy')) {
+      config.uiImagePreview.classList.remove('giphy');
+      config.uiSpinner.classList.remove('shown');
+    }
     videoAspectRatio = config.uiImagePreview.naturalWidth / config.uiImagePreview.naturalHeight;
     aspectRatioSet();
   };
