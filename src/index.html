@@ -5,15 +5,18 @@
   <title>Giphyvision</title>
   <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#000">
 </head>
 <body>
   <main class="giphyvision">
     <header>
       <h1 class="show-about">GiphyVision</h1>
       <div class="capture-controls">
-        <button class="capture-button" disabled>Giphyfy!</button>
+        <button class="capture-button" disabled>Giphyfy!<span class="spinner"></span></button>
       </div>
       <button class="repeat-button">Again!</button>
+
       <p class="status"></p>
     </header>
     <section class="onboarding">
@@ -36,7 +39,7 @@
       <li>Heroku</li>
       <li>Firebase</li>
     </ul>
-    <p>GiphyVision is a learning project by Dan Brown</p>
+    <p>GiphyVision is a learning project by Dan Brown, including use of Webpack, ES6, node, RTC camera, Google Cloud Vision API and Giphy API.</p>
     <p>Code is on <a href="https://github.com/danb-cws/giphyvision">Github</a></p>
     <a href="#" class="close-about"></a>
   </section>
