@@ -29,11 +29,6 @@ export function cameraInit() {
     function cameraFail(err) {
       reject(err);
     }
-    // if (window.stream) {
-    //   window.stream.getTracks().forEach((track) => {
-    //     track.stop();
-    //   });
-    // }
     navigator.mediaDevices.getUserMedia(getConstraints())
       .then(cameraSuccess)
       .catch(cameraFail);
@@ -41,7 +36,9 @@ export function cameraInit() {
 }
 
 export function cameraStop() {
-  videoTrack[0].stop();
+  if (videoTrack) {
+    videoTrack[0].stop();
+  }
 }
 
 export function cameraRestart() {
