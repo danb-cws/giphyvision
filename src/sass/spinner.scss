@@ -1,0 +1,15 @@
+/* @import 'variables.scss';*/
+.spinner {
+  opacity: 0;
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(13px + 2vw);
+  height: calc(13px + 2vw);
+  margin-left: .2vw;
+  background: url(../img/spinner.svg) 50% 50% no-repeat;
+  background-size: contain;
+  transition: opacity 1s;
+  &.shown {
+    opacity: 1;
+  }
+}
