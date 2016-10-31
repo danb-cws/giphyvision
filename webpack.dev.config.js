@@ -91,13 +91,11 @@ module.exports = {
       cache: false,
       template: 'index.html',
       minify: htmlMinifyOptions,
-      favicon: './img/favicon.ico',
     }),
     new HtmlWebpackPlugin({
       filename: '404.html',
       template: '404.html',
       minify: htmlMinifyOptions,
-      favicon: './img/favicon.ico',
     }),
   ],
   resolve: {

@@ -3,6 +3,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssNext = require('postcss-cssnext');
 const precss = require('precss');
@@ -93,14 +94,16 @@ module.exports = {
       cache: true,
       template: 'index.html',
       minify: htmlMinifyOptions,
-      favicon: './img/favicon.ico',
     }),
     new HtmlWebpackPlugin({
       filename: '404.html',
       template: '404.html',
       minify: htmlMinifyOptions,
-      favicon: './img/favicon.ico',
     }),
+    new CopyWebpackPlugin([
+      { from: './manifest.json', to: './manifest.json' },
+      { from: './img/icons', to: './img/icons' },
+    ]),
   ],
   resolve: {
     extensions: ['', '.js', '.json', '.css', '.scss'],
