@@ -22,6 +22,7 @@ export default function giphyRequest(term) {
           uiHandler.delayedResetUI();
           return;
         }
+        config.uiImagePreview.classList.add('giphy');
         config.uiImagePreview.src = results.images.original.url;
         config.uiVideoElem.setAttribute('style', 'display: none');
         config.uiStatusElem.innerHTML = `Gif for '${term}'`;
