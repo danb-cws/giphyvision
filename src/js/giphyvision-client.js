@@ -11,8 +11,10 @@ Errors: no camera, no support for gUm, camera already in use, permission denied
 
 */
 
+import '../sass/spinner.scss';
+
 import * as config from './giphyvision-config';
-import * as cameraInit from './camera-setup';
+import * as cameraSetup from './camera-setup';
 import captureStill from './capture-still';
 import gcloudRequest from './gcloud-request';
 import * as fileInputFallback from './file-input-fallback';
@@ -21,14 +23,13 @@ import * as uiHandler from './uiHandler';
 import debounce from './utils/debounce';
 
 function activateCam(e) {
-  console.log('++ activate cam fn');
   e.preventDefault();
   if (typeof Promise === 'undefined') {
     config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoPromises} </p>`;
     return;
   }
 
-  cameraInit.cameraInit().then((response) => {
+  cameraSetup.cameraInit().then((response) => {
     config.uiVideoElem.src = window.URL.createObjectURL(response);
     mediaHandler.mediaOnload();
     config.uiOnboardingElem.classList.add('hidden');
@@ -48,7 +49,8 @@ function captureImageAndSubmit(e) {
   e.preventDefault();
   config.uiCaptureBtn.setAttribute('disabled', 'disabled');
   gcloudRequest(captureStill());
-  cameraInit.cameraStop();
+  cameraSetup.cameraStop();
+  config.uiSpinner.classList.add('shown');
 }
 
 // Bind a click to button to start webcam, ask permission etc
@@ -67,14 +69,16 @@ const debouncedResize = debounce(() => {
 window.addEventListener('resize', debouncedResize, false);
 
 // work out how many cameras, if possible which is back one
-window.addEventListener('load', cameraInit.enumerateDevices, false);
+window.addEventListener('load', cameraSetup.enumerateDevices, false);
 
 // error handler on image load, eg if user tries to upload non-image file
 config.uiImagePreview.onerror = () => {
   config.uiStatusElem.innerHTML = '<span class="error">Not a valid image</span>';
-  config.uiCaptureBtn.setAttribute('disabled', 'disabled');
-  config.uiImagePreview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // transparent blank
-  uiHandler.delayedResetUI();
+  config.uiCaptureCtrls.setAttribute('style', 'display: none');
+  config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
+  // config.uiCaptureBtn.setAttribute('disabled', 'disabled');
+  // config.uiImagePreview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // transparent blank
+  // uiHandler.againRoute();
 };
 
 function toggleAbout(e) {
