@@ -15,6 +15,7 @@ export const uiImagePreview = document.querySelector('.preview');
 export const uiStatusElem = document.querySelector('.status');
 export const uiFallbackFileInputLinkId = 'invokeFileBrowser';
 export const uiCameraToggleId = 'camToggle';
+export const uiSpinner = document.querySelector('.spinner');
 export const uiAbout = document.querySelector('.about');
 export const uiShowAbout = document.querySelector('.show-about');
 export const uiCloseAbout = document.querySelector('.close-about');
@@ -26,6 +27,6 @@ export const GIPHY_API_KEY = 'dc6zaTOxFJmzC';
 
 /* messaging */
 export const errorTxtNoGum = 'Unfortunately your browser doesn\'t (yet) support "getUserMedia" (includes Safari desktop and Safari/Chrome on iOS), which allows integration of the camera output into the UI.';
-export const errorTxtCameraStart = 'Could not access camera. Error: ';
+export const errorTxtCameraStart = 'Could not access camera, error: ';
 export const errorTxtNoPromises = '<strong>It\'s not going to work...</strong> <br>GiphyVision uses javascript "Promises" which are not supported in old browsers. <br><br>Please come back with Chrome, Firefox or Edge!';
 export const uiFallbackFileInputCopy = `Fret not! You can use the slightly clunky <a href="#" id="${uiFallbackFileInputLinkId}">file browser</a> approach instead`;
