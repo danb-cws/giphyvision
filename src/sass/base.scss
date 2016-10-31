@@ -16,6 +16,7 @@ body {
 }
 a, a:link, a:visited, a:active {
   color: $default-link-color;
+  transition: color 1s;
 }
 a:hover {
   color: $default-link-hover-color;
@@ -25,16 +26,20 @@ p {
   margin-top: 0;
 }
 
+*:not(input):not(textarea) {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
 button {
-  border: none;
   border-radius: 0.7vw;
   font-size: calc(13px + 2vw);
-  padding: 0.2vw 1vw;
+  padding: 0.2vw 3vw;
   border: 1px solid $controls-color;
   background-color: $controls-background-color;
   cursor: pointer;
   box-shadow: $default-box-shadow;
-  min-width: 13vw;
+  min-width: 15.5vw;
   &:disabled{
     color: $controls-disabled-color;
     cursor: default;
@@ -48,14 +53,15 @@ button {
 h1 {
   position: fixed;
   top:  $primary-vertical-spacing;
-  color: rgba(82, 92, 138, 0.54);
+  color: rgba(82, 92, 138, 0.74);
   margin: 0;
   font-style: italic;
   font-size: 3vw;
   font-weight: 200;
   cursor: pointer;
+  transition: color 1s;
   &:hover {
-    color: rgba(82, 92, 138, 0.84);
+    color: rgba(200, 200, 200, 0.84);
   }
 }
 
@@ -73,21 +79,28 @@ h1 {
     z-index: 2;
     bottom: $primary-vertical-spacing;
     left:  $primary-horizontal-spacing;
+    right:  $primary-horizontal-spacing;
     opacity: .8;
-    > * {
+    > .capture-controls {
       display: inline-block;
       vertical-align: middle;
+      .capture-button {
+        padding-right: 0;
+      }
     }
-    .repeat-button {
+    > .repeat-button {
       display: none;
+      vertical-align: middle;
     }
-    .status {
+    > .status {
+      display: inline-block;
+      vertical-align: middle;
       font-size: calc(13px + 1vw);
       margin: 0 $secondary-horizontal-spacing;
       padding: $secondary-vertical-spacing $secondary-horizontal-spacing;
       background-color: rgba(0, 0, 0, .5);
       &:empty {
-        display: none;
+        padding: 0; /*display: none causes display bug in safari*/
       }
       .error {
         color: $error-color;
@@ -110,7 +123,6 @@ h1 {
     }
     .start-button {
       font-size: 5vw;
-      padding: 0.5vw 1.5vw;
     }
     .copyright {
       font-size: 30%;
@@ -183,9 +195,17 @@ h1 {
     background-color: $controls-background-color;
     border-radius: 50%;
     box-shadow: $default-box-shadow;
-    &::before {
-      content: '+';
-      line-height: 0;
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background-color: $controls-color;
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
     }
   }
   &.shown{
