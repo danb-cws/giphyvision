@@ -1,9 +1,11 @@
 # GiphyVision
-Experimenting and learning with device camera, Google Cloud Vision and Giphy API's. Working with Heroku and Firebase, using Webpack workflow.
+Experimenting and learning with device camera, Google Cloud Vision and Giphy API's. Working with Heroku and Firebase, using Webpack workflow and ES6 modules.
 
 Objective: use device camera to take a picture of an object etc, submit to Cloud Vision which will return a description, this will be passed to Giphy which returns a... gif
 
-An image is passed as base64 data to a service on Heroku, the code for which is in a separate repo but looks like:
+A workaround for iOS and Safari (which don't support getUserMedia) allows submitting a camera image via a hidden file input, this route is also for "no camera" or "camera permission denied" scenarios.
+
+The image is passed as base64 data to a service on Heroku, the code for which is in a separate repo but looks much like:
 
 	const http = require('http');
 	const gcloud = require('google-cloud')({
@@ -43,7 +45,7 @@ An image is passed as base64 data to a service on Heroku, the code for which is 
 		}
 	}).listen(process.env.PORT || 5000);
 
-This service makes the request to cloud vision with my api key and returns a list of "labelAnnotations" to the clientside code which then makes the request to Giphy.
+This service makes the request to cloud vision with my api key and returns a list of "labelAnnotations" to the clientside code which then does some crude filtering and then makes the request to Giphy.
 
 TODO:
 
@@ -66,3 +68,6 @@ TODO:
 * about screen
 * refinements
 * more refinements...
+
+KNOWN BUGS
+* On ios in standalone (add to homescreen) mode, capture from the camera works fine, but uploading local files results in the canvas.toDataURL returning blank. This works fine in normal safari.
