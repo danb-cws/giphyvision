@@ -1,0 +1,65 @@
+@import 'variables.scss';
+
+/* basics */
+html {
+  height: 100%;
+  touch-action: manipulation;
+  font-family: $font-stack;
+  font-size: $base-font-size;
+}
+body {
+  height: 100%;
+  padding: 0;
+  color: $primary-color;
+  background: $primary-bgcolor;
+}
+a, a:link, a:visited, a:active {
+  color: $default-link-color;
+  transition: color 1s;
+}
+a:hover {
+  color: $default-link-hover-color;
+}
+
+p {
+  margin-top: 0;
+}
+
+*:not(input):not(textarea) {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+button {
+  border-radius: 0.7vw;
+  font-size: calc(13px + 2vw);
+  padding: 0.2vw 3vw;
+  border: 1px solid $controls-color;
+  background-color: $controls-background-color;
+  cursor: pointer;
+  box-shadow: $default-box-shadow;
+  min-width: 15.5vw;
+  &:disabled{
+    color: $controls-disabled-color;
+    cursor: default;
+  }
+  &:hover{
+    background-color: $controls-background-hover-color;
+  }
+}
+
+/* h1 in header */
+h1 {
+  position: fixed;
+  top:  $primary-vertical-spacing;
+  color: rgba(82, 92, 138, 0.74);
+  margin: 0;
+  font-style: italic;
+  font-size: 3vw;
+  font-weight: 200;
+  cursor: pointer;
+  transition: color 1s;
+  &:hover {
+    color: rgba(200, 200, 200, 0.84);
+  }
+}
