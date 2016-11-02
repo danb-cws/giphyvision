@@ -1,13 +1,13 @@
-@import 'variables.scss';
+/* @import 'variables.scss';*/
 
 #camToggle {
   background: url(../img/cam-toggle.svg) no-repeat;
   opacity: 0.6;
-  width: 8vmax;
-  height: 8vmax;
+  width: 11vw;
+  height: 11vw;
   text-indent: -999em;
   overflow: hidden;
   position: absolute;
-  left: $primary-horizontal-spacing;
-  top: -210%;
+  left: 0;
+  top: -230%;
 }
