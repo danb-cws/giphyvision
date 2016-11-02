@@ -45,7 +45,6 @@ export default function captureImage() {
   } else {
     config.uiStatusElem.innerHTML('<span class="error">Fatal error: media in media-handler</span>');
   }
-  console.log(dataURL);
   return dataURL;
 }
 
