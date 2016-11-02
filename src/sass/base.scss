@@ -1,72 +1,14 @@
 @import '../../node_modules/normalize.css/normalize.css';
 @import 'variables.scss';
 
-/* basics */
-html {
-  height: 100%;
-  touch-action: manipulation;
-  font-family: $font-stack;
-  font-size: $base-font-size;
-}
-body {
-  height: 100%;
-  padding: 0;
-  color: $primary-color;
-  background: $primary-bgcolor;
-}
-a, a:link, a:visited, a:active {
-  color: $default-link-color;
-  transition: color 1s;
-}
-a:hover {
-  color: $default-link-hover-color;
-}
 
-p {
-  margin-top: 0;
-}
+@import 'basics.scss';
+@import 'about.scss';
 
-*:not(input):not(textarea) {
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-}
-
-button {
-  border-radius: 0.7vw;
-  font-size: calc(13px + 2vw);
-  padding: 0.2vw 3vw;
-  border: 1px solid $controls-color;
-  background-color: $controls-background-color;
-  cursor: pointer;
-  box-shadow: $default-box-shadow;
-  min-width: 15.5vw;
-  &:disabled{
-    color: $controls-disabled-color;
-    cursor: default;
-  }
-  &:hover{
-    background-color: $controls-background-hover-color;
-  }
-}
-
-/* h1 in header */
-h1 {
-  position: fixed;
-  top:  $primary-vertical-spacing;
-  color: rgba(82, 92, 138, 0.74);
-  margin: 0;
-  font-style: italic;
-  font-size: 3vw;
-  font-weight: 200;
-  cursor: pointer;
-  transition: color 1s;
-  &:hover {
-    color: rgba(200, 200, 200, 0.84);
-  }
-}
 
 /* structure and layout */
-.giphyvision {
+/* .giphyvision { */
+.$(namespace) {
   position: relative;
   margin: 0 auto;
   width: 100%;
@@ -170,45 +112,4 @@ h1 {
 }
 
 
-.about {
-  display: none;
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20vh 10vh;
-  background: teal;
-  font-size: 2.5vw;
-  .close-about {
-    position: absolute;
-    top: $primary-horizontal-spacing;
-    right: $primary-vertical-spacing;
-    width: 5vw;
-    height: 5vw;
-    z-index: 11;
-    font-size: 5vw;
-    text-decoration: none;
-    text-align: center;
-    color: $controls-color;
-    background-color: $controls-background-color;
-    border-radius: 50%;
-    box-shadow: $default-box-shadow;
-    &::before, &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      width: 2px;
-      height: 100%;
-      background-color: $controls-color;
-      transform: rotate(45deg);
-    }
-    &::after {
-      transform: rotate(-45deg);
-    }
-  }
-  &.shown{
-    display: block;
-  }
-}
+
