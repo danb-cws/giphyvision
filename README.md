@@ -65,6 +65,8 @@ TODO:
 * logic for welcome view? cookie etc
 * ~~response processing logic~~
 * ~~giphy api request and POC display of gif~~
+* randomize returned gif
+* sizing of canvas - to reduce data transfers to to high rez cameras
 * about screen
 * refinements
 * more refinements...
