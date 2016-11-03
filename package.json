@@ -55,7 +55,7 @@
     "deploy": "firebase deploy",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run lint && npm run serve-prod",
-    "release": "npm run lint && npm run build && npm run deploy"
+    "release": "npm run stylelint && npm run eslint && npm run build && npm run deploy"
   },
   "keywords": [
     "Dan",
