@@ -35,5 +35,6 @@ export function mediaOnload() {
     videoAspectRatio = config.uiVideoElem.videoWidth / config.uiVideoElem.videoHeight;
     mediaType = 'video';
     aspectRatioSet();
+    config.uiCaptureBtn.removeAttribute('disabled');
   };
 }

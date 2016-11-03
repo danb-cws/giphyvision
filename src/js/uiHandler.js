@@ -13,7 +13,6 @@ function resetUI() {
     config.uiRepeatBtn.setAttribute('style', 'display: none');
     config.uiCaptureCtrls.setAttribute('style', 'display: inline-block');
     config.uiVideoElem.setAttribute('style', 'display: block');
-    config.uiCaptureBtn.removeAttribute('disabled');
     config.uiImagePreview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // transparent blank
   }
 }
