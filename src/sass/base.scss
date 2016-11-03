@@ -1,13 +1,10 @@
 @import '../../node_modules/normalize.css/normalize.css';
 @import 'variables.scss';
 
-
 @import 'basics.scss';
 @import 'about.scss';
 
-
 /* structure and layout */
-/* .giphyvision { */
 .$(namespace) {
   position: relative;
   margin: 0 auto;
