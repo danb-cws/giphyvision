@@ -21,7 +21,6 @@
     text-align: center;
     color: $controls-color;
     background-color: $controls-background-color;
-    border-radius: 50%;
     box-shadow: $default-box-shadow;
     &::before, &::after {
       content: '';
