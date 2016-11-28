@@ -1,3 +1,5 @@
+/* determine dimensions and aspect ratio of media onload */
+
 import * as config from './giphyvision-config';
 
 let mediaType = 'image';
