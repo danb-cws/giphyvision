@@ -4,6 +4,7 @@
       <w>bgcolor</w>
       <w>dirname</w>
       <w>minify</w>
+      <w>permisission</w>
       <w>postcss</w>
       <w>precss</w>
       <w>webcam</w>
