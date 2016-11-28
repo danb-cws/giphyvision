@@ -1,8 +1,9 @@
 /**
- *   1. Feature detect webcam, return reference to handleVideo or error.
+ *   1. Feature detect webcam
  *   Errors could be: no camera, no support for gUm, camera already in use, permission denied
  *   return a MediaStream object or an error
- *   2. Get how many cameras, if description matched 'back' use that one, if > 1 set up cam toggle ui
+ *   2. Get how many cameras, if description ('label') of any of them contains 'back' or 'rear' default to that one,
+ *   if > 1 set up cam toggle ui (no user permission required for this)
  */
 import '../sass/cam-toggle.scss';
 import * as config from './giphyvision-config';
@@ -15,9 +16,10 @@ let currCamIndex = 0;
 let camToggleElem;
 
 function getConstraints() {
-  return { audio: false, video: { facingMode: 'environment', deviceId: cameraId } };
+  return { audio: false, video: { facingMode: 'environment', deviceId: cameraId } }; // facingMode is not yet working in browsers
 }
 
+/* 1. */
 export function cameraInit() {
   // console.log(`camera init:camerId is: ${cameraId}`);
   // console.log(getConstraints());
@@ -61,6 +63,7 @@ function cycleCameras(e) {
   }
 }
 
+/* 2. */
 export function enumerateDevices() {
   if (typeof navigator.mediaDevices.enumerateDevices !== 'undefined') {
     navigator.mediaDevices.enumerateDevices()
