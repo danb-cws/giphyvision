@@ -22,9 +22,9 @@ export default function giphyRequest(term) {
           uiHandler.delayedResetUI();
           return;
         }
+        config.uiVideoElem.setAttribute('style', 'display: none');
         config.uiImagePreview.classList.add('giphy');
         config.uiImagePreview.src = results.images.original.url;
-        config.uiVideoElem.setAttribute('style', 'display: none');
         config.uiStatusElem.innerHTML = `Gif for '${term}'`;
         config.uiCaptureCtrls.setAttribute('style', 'display: none');
         config.uiRepeatBtn.setAttribute('style', 'display: inline-block');
