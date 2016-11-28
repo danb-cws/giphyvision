@@ -1,4 +1,4 @@
-/* Camera fallback - if getUserMedia not supported, we can use hidden file input which allows camera on iOS
+/* Camera fallback - if getUserMedia not supported, we can use hidden file input which allows camera input on iOS, android
 * 1. create hidden file input
 * 2. Bind click to link as specified in config
 * 3. Set src of preview area to returned file
@@ -14,7 +14,7 @@ let hasCamToggle;
 
 function copyToImageElem() {
   hasCamToggle = document.querySelector(`#${config.uiCameraToggleId}`);
-  if (hasCamToggle) { // hide cam toggle if 1)has 2 cams and 2)user has refused permission
+  if (hasCamToggle) { // edge case: hide cam toggle if 1)has 2 cams and 2)user has refused permission for gUm
     hasCamToggle.setAttribute('style', 'display: none');
   }
   inputFilesRef = window.URL.createObjectURL(fileInput.files[0]);
