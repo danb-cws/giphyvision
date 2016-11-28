@@ -18,7 +18,7 @@ export default function gcloudRequest(base64data) {
         responseHandler(data);
       });
     } else {
-      config.uiStatusElem.innerHTML = '<span class="error">CloudVision - Network response was not ok.</span>';
+      config.uiStatusElem.innerHTML = '<span class="error">CloudVision - Network response was not "ok".</span>';
       uiHandler.delayedResetUI();
     }
   }).catch((err) => { // bug: Safari - fetch polyfill dosn't seem to catch err as expected?
