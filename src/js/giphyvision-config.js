@@ -5,7 +5,7 @@
 /* SELECTORS for UI elements */
 
 export const uiOnboardingElem = document.querySelector('.onboarding');
-export const uiVideo = document.querySelector('.video');
+export const uiVideo = document.querySelector('.display');
 export const uiVideoElem = document.querySelector('.video-element');
 export const uiStartBtn = document.querySelector('.start-button');
 export const uiCaptureCtrls = document.querySelector('.capture-controls');
