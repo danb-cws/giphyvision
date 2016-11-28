@@ -1,11 +1,11 @@
 # GiphyVision
 Experimenting and learning with device camera, Google Cloud Vision and Giphy API's. Working with Heroku and Firebase, using Webpack workflow and ES6 modules.
 
-Objective: use device camera to take a picture of an object etc, submit to Cloud Vision which will return a description, this will be passed to Giphy which returns a... gif
+Objective: use device camera to take a picture of an object etc, submit to Cloud Vision which will analyse the image and return a description, this will be passed to Giphy which returns a... gif
 
-A workaround for iOS and Safari (which don't support getUserMedia) allows submitting a camera image via a hidden file input, this route is also for "no camera" or "camera permission denied" scenarios.
+A workaround for iOS and Safari (which don't support getUserMedia) allows use of a camera shot or local image file via a hidden file input, this route is also for "have no camera" or "camera permission denied" scenarios.
 
-The image is passed as base64 data to a service on Heroku, the code for which is in a separate repo but looks much like:
+The image is passed as base64 data to a service on Heroku, the code for which is in a separate repo but looks very much like:
 
 	const http = require('http');
 	const gcloud = require('google-cloud')({
@@ -45,7 +45,7 @@ The image is passed as base64 data to a service on Heroku, the code for which is
 		}
 	}).listen(process.env.PORT || 5000);
 
-This service makes the request to cloud vision with my api key and returns a list of "labelAnnotations" to the clientside code which then does some crude filtering and then makes the request to Giphy.
+This service makes the request to cloud vision with my api key and returns a list of "labelAnnotations" to the client code which then does some crude filtering and then makes the request to Giphy.
 
 TODO:
 
@@ -65,11 +65,9 @@ TODO:
 * logic for welcome view? cookie etc
 * ~~response processing logic~~
 * ~~giphy api request and POC display of gif~~
-* randomize returned gif
-* sizing of canvas - to reduce data transfers to to high rez cameras
-* about screen
+* about screen, options
 * refinements
 * more refinements...
 
 KNOWN BUGS
-* Firefox dosn't seem to want to play animated gifs after the first one, subsequent gifs only show first frame. (no idea... "won't fix")
+* Firefox dosn't seem to want to play animated gifs after the first one returned, subsequent gifs only show first frame. (Common bug... "won't fix")
