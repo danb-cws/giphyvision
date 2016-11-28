@@ -20,7 +20,7 @@ module.exports = {
     publicPath: 'https://192.168.1.16:8080/', // absolute path req here for assets in css to work with sourcemaps on. Must be actual numeric ip to access over lan.
     filename: 'js/[name].js',
   },
-  // profile: true, // show times for build of each chunk etc, to debug slow builds
+  // profile: true, // show times for build of each chunk etc to debug slow builds
   debug: true,
   devtool: 'source-map',
   devServer: {
