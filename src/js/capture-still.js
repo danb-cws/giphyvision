@@ -1,3 +1,7 @@
+/*
+ Create hidden canvas, copy pixels from video image (or static image depending on capabilities) and return as dataUrl
+*/
+
 import * as config from './giphyvision-config';
 import * as mediaHandler from './media-handler';
 
@@ -14,20 +18,6 @@ export default function captureImage() {
     canvas.id = 'hiddenCanvas';
     ctx = canvas.getContext('2d');
   }
-  // todo: need to size canvas at sensible max to limit data transfer, eg. smartphone hi rez cam vs 640 webcam
-  /*  const MAX_WIDTH = 1024;
-   const MAX_HEIGHT = 768;
-   if (width/MAX_WIDTH > height/MAX_HEIGHT) {
-   if (width > MAX_WIDTH) {
-   height *= MAX_WIDTH / width;
-   width = MAX_WIDTH;
-   }
-   } else {
-   if (height > MAX_HEIGHT) {
-   width *= MAX_HEIGHT / height;
-   height = MAX_HEIGHT;
-   }
-   }*/
   media = mediaHandler.whichMedia();
   if (media === 'video') {
     canvas.width = config.uiVideoElem.videoWidth;
@@ -43,7 +33,7 @@ export default function captureImage() {
     ctx.drawImage(config.uiImagePreview, 0, 0, canvas.width, canvas.height);
     dataURL = canvas.toDataURL('image/png');
   } else {
-    config.uiStatusElem.innerHTML('<span class="error">Fatal error: media in media-handler</span>');
+    config.uiStatusElem.innerHTML('<span class="error">Error: media in media-handler</span>');
   }
   return dataURL;
 }
