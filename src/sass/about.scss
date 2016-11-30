@@ -7,8 +7,18 @@
   left: 0;
   right: 0;
   padding: 20vh 10vh;
-  background: teal;
+  background: $secondary-bgcolor;
   font-size: 2.5vw;
+  .copyright {
+    font-size: 80%;
+    color: $controls-color;
+    position: absolute;
+    bottom: $primary-vertical-spacing;
+    right: $primary-horizontal-spacing;
+    &:hover {
+      color: #ddd;
+    }
+  }
   .close-about {
     position: absolute;
     top: $primary-horizontal-spacing;
