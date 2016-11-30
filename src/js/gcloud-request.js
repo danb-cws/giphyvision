@@ -14,7 +14,7 @@ export default function gcloudRequest(base64data) {
   }).then((response) => {
     if (response.ok) {
       response.json().then((data) => {
-        console.log(data);
+        // console.log(data);
         responseHandler(data);
       });
     } else {
