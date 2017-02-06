@@ -4,6 +4,7 @@ html {
   touch-action: manipulation;
   font-family: $font-stack;
   font-size: $base-font-size;
+  line-height: $base-line-height;
 }
 body {
   height: 100%;
@@ -13,7 +14,7 @@ body {
 }
 a, a:link, a:visited, a:active {
   color: $default-link-color;
-  transition: color 1s;
+  transition: color $short-time;
 }
 a:hover {
   color: $default-link-hover-color;
@@ -46,18 +47,4 @@ button {
   }
 }
 
-/* h1 in header */
-h1 {
-  position: fixed;
-  top:  $primary-vertical-spacing;
-  color: rgba(82, 92, 138, 0.74);
-  margin: 0;
-  font-style: italic;
-  font-size: 3vw;
-  font-weight: 200;
-  cursor: pointer;
-  transition: color 1s;
-  &:hover {
-    color: rgba(200, 200, 200, 0.84);
-  }
-}
+

@@ -1,5 +1,20 @@
+/* h1 in header as button */
+.show-about {
+  position: fixed;
+  z-index: 2;
+  top:  $primary-vertical-spacing;
+  color: rgba(82, 92, 138, 0.74);
+  margin: 0;
+  font-style: italic;
+  font-size: 3vw;
+  font-weight: 200;
+  cursor: pointer;
+  transition: color $short-time;
+  &:hover {
+    color: rgba(200, 200, 200, 0.84);
+  }
+}
 .about {
-  display: none;
   position: absolute;
   z-index: 10;
   top: 0;
@@ -9,6 +24,12 @@
   padding: 20vh 10vh;
   background: $secondary-bgcolor;
   font-size: 2.5vw;
+  transform: translateY(-100%);
+  transition: transform $long-time;
+  &.shown{
+    transition: transform $long-time;
+    transform: translateY(0);
+  }
   .copyright {
     font-size: 80%;
     color: $controls-color;
@@ -44,8 +65,5 @@
     &::after {
       transform: rotate(-45deg);
     }
-  }
-  &.shown{
-    display: block;
   }
 }
