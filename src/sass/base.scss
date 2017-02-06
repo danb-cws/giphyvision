@@ -46,8 +46,7 @@
       }
     }
   }
-
-  .onboarding {
+  > .onboarding {
     position: absolute;
     z-index: 2;
     top: 0;
@@ -68,7 +67,7 @@
       visibility: hidden;
     }
   }
-  .display {
+  > .display {
     position: relative;
     height: 100%;
     width: 100%;

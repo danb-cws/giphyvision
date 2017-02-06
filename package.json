@@ -47,7 +47,7 @@
   "scripts": {
     "build": "webpack --display-error-details --config webpack.prod.config.js",
     "serve-dev": "webpack-dev-server --hot --host 0.0.0.0 --config webpack.dev.config.js",
-    "serve-dev-secure": "webpack-dev-server --https --host 0.0.0.0 --config webpack.dev.config.js",
+    "serve-dev-secure": "webpack-dev-server --hot --https --host 0.0.0.0 --config webpack.dev.config.js",
     "serve-prod": "webpack-dev-server --host 0.0.0.0 --config webpack.prod.config.js",
     "serve-prod-secure": "webpack-dev-server --https --host 0.0.0.0 --config webpack.prod.config.js",
     "eslint": "eslint src/js/",
