@@ -54,7 +54,7 @@
     "stylelint": "stylelint \"src/sass/**/*.scss\"",
     "deploy": "firebase deploy",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run lint && npm run serve-prod",
+    "start": "npm run lint && npm run serve-prod-secure",
     "release": "npm run stylelint && npm run eslint && npm run build && npm run deploy"
   },
   "keywords": [

@@ -1,8 +1,6 @@
 /*
 process logic on response json from gCloud vision api
 extracts search term
-future ideas include prioritising logo recognition
-to be revisited...
 for now, just take the first match that's not in the boringMatches array
 */
 
