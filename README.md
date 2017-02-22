@@ -94,7 +94,9 @@ TODO:
 
 NPM SCRIPTS:
 * build - build asset only, with prod config
-* 
+* serve-dev-secure - serves https in-memory with debug and HMR
+* serve-prod-secure - serves https in-memory without debug and HMR
+* release - builds assets and deploys to firebase
 
 KNOWN BUGS
 * Firefox dosn't seem to want to play animated gifs after the first one returned, subsequent gifs only show first frame. (Common bug... "won't fix")
