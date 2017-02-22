@@ -72,7 +72,7 @@ module.exports = {
   },
   postcss(wp) {
     return [
-      postcssImport({ addDependencyTo: wp }), // Must be first item in list - TODO: aDt redundant?
+      postcssImport({ addDependencyTo: wp }), // Must be first item in list
       precss,
       postcssNext({ browsers: ['last 2 versions'] }),
     ];
