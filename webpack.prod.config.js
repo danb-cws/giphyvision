@@ -103,6 +103,7 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './manifest.json', to: './manifest.json' },
       { from: './img/icons', to: './img/icons' },
+      // { from: './sw.js', to: './sw.js' },
     ]),
   ],
   resolve: {
