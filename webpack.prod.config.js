@@ -7,6 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssNext = require('postcss-cssnext');
 const precss = require('precss');
+// const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 const htmlMinifyOptions = { removeComments: true, collapseWhitespace: true, collapseInlineTagWhitespace: false };
 
@@ -18,15 +19,16 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
-    filename: 'js/[name].js',
+    publicPath: '',
+    filename: 'js/[name]-[hash].js',
   },
   devServer: {
     colors: true,
-    contentBase: './dist',
+    contentBase: '/dist/',
+    // contentBase: 'dist',
     // historyApiFallback: true,
     compress: true,
-    inline: true,
+    inline: false,
     progress: true,
   },
   eslint: {
@@ -43,7 +45,7 @@ module.exports = {
         test: /.*\.(gif|png|jpe?g|svg)$/i,
         exclude: /node_modules/,
         loaders: [
-          'url?limit=8192&name=[path][name].[ext]?[hash]',
+          'url?limit=8192&name=[path][name]-[hash].[ext]',
           'image-webpack?{progressive:true, optimizationLevel: 5, pngquant:{quality: "65-80", speed: 4}}',
         ],
       },
@@ -66,7 +68,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new ExtractTextPlugin('./css/[name].css', { allChunks: true }),
+    new ExtractTextPlugin('css/[name]-[hash].css', { allChunks: true }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
@@ -90,7 +92,7 @@ module.exports = {
       },
     }),
     new HtmlWebpackPlugin({
-      hash: true,
+      hash: false,
       cache: true,
       template: 'index.html',
       minify: htmlMinifyOptions,
@@ -103,8 +105,19 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './manifest.json', to: './manifest.json' },
       { from: './img/icons', to: './img/icons' },
-      // { from: './sw.js', to: './sw.js' },
     ]),
+/*    new SWPrecacheWebpackPlugin({
+      cacheId: 'giphyvisionV1',
+      // filename: 'sw.js',
+      filepath: '/sw.js',
+      maximumFileSizeToCacheInBytes: 4194304,
+      // minify: true,
+      handleFetch: false,
+      runtimeCaching: [{
+        handler: 'cacheFirst',
+        urlPattern: /src/,
+      }],
+    }),*/
   ],
   resolve: {
     extensions: ['', '.js', '.json', '.css', '.scss'],

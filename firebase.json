@@ -2,22 +2,22 @@
   "hosting": {
     "public": "dist",
     "headers": [ {
-      "source" : "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
-      "headers" : [ {
-        "key" : "Access-Control-Allow-Origin",
-        "value" : "*"
+      "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+      "headers": [ {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
       } ]
       }, {
-      "source" : "**/*.@(jpg|jpeg|gif|png|ico|css|js)",
-      "headers" : [ {
-        "key" : "Cache-Control",
-        "value" : "max-age=31536000, public"
+      "source": "**/*.@(jpg|jpeg|gif|png|ico|css|js)",
+      "headers": [ {
+        "key": "Cache-Control",
+        "value": "max-age=31536000, public"
       } ]
       }, {
-      "source" : "404.html",
-      "headers" : [ {
-        "key" : "Cache-Control",
-        "value" : "max-age=36000, public"
+      "source": "404.html",
+      "headers": [ {
+        "key": "Cache-Control",
+        "value": "max-age=36000, public"
       } ]
     } ]
   }
