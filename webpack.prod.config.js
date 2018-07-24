@@ -15,6 +15,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: [
     'whatwg-fetch', // fetch polyfill
+    // './js/utils/service-worker-registration.js',
     './js/base.js',
   ],
   output: {
@@ -25,7 +26,6 @@ module.exports = {
   devServer: {
     colors: true,
     contentBase: '/dist/',
-    // contentBase: 'dist',
     // historyApiFallback: true,
     compress: true,
     inline: false,
@@ -107,16 +107,24 @@ module.exports = {
       { from: './img/icons', to: './img/icons' },
     ]),
 /*    new SWPrecacheWebpackPlugin({
-      cacheId: 'giphyvisionV1',
-      // filename: 'sw.js',
-      filepath: '/sw.js',
-      maximumFileSizeToCacheInBytes: 4194304,
-      // minify: true,
-      handleFetch: false,
-      runtimeCaching: [{
-        handler: 'cacheFirst',
-        urlPattern: /src/,
-      }],
+      cacheId: 'giphyvisionV3',
+      filename: 'service-worker.js',
+      staticFileGlobs: [
+        'dist/css/!**.css',
+        'dist/!**.html',
+        'dist/img/!**.*',
+        'dist/js/!**.js',
+        'dist/manifest.json',
+      ],
+      stripPrefix: 'dist/',
+      // filepath: '/service-worker.js',
+      // maximumFileSizeToCacheInBytes: 4194304,
+      // // minify: true,
+      // handleFetch: false,
+      // runtimeCaching: [{
+      //   handler: 'cacheFirst',
+      //   urlPattern: /src/,
+      // }],
     }),*/
   ],
   resolve: {
