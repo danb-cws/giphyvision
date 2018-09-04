@@ -1,4 +1,7 @@
 # GiphyVision
+
+## Edit 2018: this needs a bit of work to catch up browser changes over the last 2 years, eg video.srcObject rather than URL.createObjectURL, hopefully this will resolve issues on iOS
+
 Experimenting and learning with device camera, Google Cloud Vision and Giphy API's. Working with Heroku and Firebase, using Webpack workflow and ES6 modules.
 
 Objective: use device camera to take a picture of an object etc, submit to Cloud Vision which will analyse the image and return a description, this will be passed to Giphy which returns a... gif
