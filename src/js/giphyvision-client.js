@@ -30,7 +30,8 @@ function activateCam(e) {
   }
 
   cameraSetup.cameraInit().then((response) => {
-    config.uiVideoElem.src = window.URL.createObjectURL(response);
+    // config.uiVideoElem.src = window.URL.createObjectURL(response);
+    config.uiVideoElem.srcObject = response;
     mediaHandler.mediaOnload();
     config.uiOnboardingElem.classList.add('hidden');
     config.uiCaptureBtn.removeAttribute('disabled');
