@@ -54,7 +54,8 @@ function cycleCameras(e) {
   cameraId = availableVideoInputs[currCamIndex].deviceId;
   videoTrack[0].stop();
   cameraInit().then((response) => {
-    config.uiVideoElem.src = window.URL.createObjectURL(response);
+    // config.uiVideoElem.src = window.URL.createObjectURL(response);
+    config.uiVideoElem.srcObject = response;
   });
   if (currCamIndex < (availableVideoInputs.length - 1)) { // cycle through cameras
     currCamIndex += 1;
