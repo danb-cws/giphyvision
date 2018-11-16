@@ -45,7 +45,8 @@ export function cameraStop() {
 
 export function cameraRestart() {
   cameraInit().then((response) => {
-    config.uiVideoElem.src = window.URL.createObjectURL(response);
+    // config.uiVideoElem.src = window.URL.createObjectURL(response);
+    config.uiVideoElem.srcObject = response;
   });
 }
 
