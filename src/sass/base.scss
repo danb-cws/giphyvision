@@ -53,14 +53,20 @@
     bottom: 0;
     right: 0;
     left: 0;
-    padding: 20vh 10vw;
+    padding: 13vh 10vw;
     font-size: 3.5vw;
     background: #444;
     .intro {
       font-size: 5vw;
     }
+    .privacy {
+      display: block;
+      color: #909090;
+      font-size: 3vw;
+    }
     .start-button {
       font-size: 5vw;
+      margin-bottom: 1em;
     }
     &.hidden {
       /* cant be display: none; or pseudo click on file input wont work */
