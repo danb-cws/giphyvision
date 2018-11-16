@@ -1,12 +1,10 @@
 # GiphyVision
 
-## Edit 2018: this needs a bit of work to catch up browser changes over the last 2 years, eg video.srcObject rather than URL.createObjectURL, hopefully this will resolve issues on iOS
-
 Experimenting and learning with device camera, Google Cloud Vision and Giphy API's. Working with Heroku and Firebase, using Webpack workflow and ES6 modules.
 
 Objective: use device camera to take a picture of an object etc, submit to Cloud Vision which will analyse the image and return a description, this will be passed to Giphy which returns a... gif
 
-A workaround for iOS and Safari (which don't support getUserMedia) allows use of a camera shot or local image file via a hidden file input, this route is also for "have no camera" or "camera permission denied" scenarios.
+A workaround for  browsers which don't support getUserMedia allows use of a camera shot or local image file via a hidden file input, this route is also for "have no camera" or "camera permission denied" scenarios.
 
 The image is passed as base64 data to a service on Heroku, the code for which is in a separate repo but looks very much like:
 
