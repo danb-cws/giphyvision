@@ -37,10 +37,10 @@ function activateCam(e) {
     config.uiCaptureBtn.removeAttribute('disabled');
   }, (error) => {
     if (error.message !== 'noGetUserMediaSupport') {
-      config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtCameraStart} ${error.name} </p>`;
+      config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtCameraStart} ${error} </p>`;
       fileInputFallback.invokeFileInput();
-    } else { // no getusermedia, so prob on ios or safari desktop
-      config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoGum}</p>`;
+    } else { // no getusermedia, so prob on ios?
+      config.uiOnboardingElem.innerHTML = `<p>${config.errorTxtNoGum} ${error}</p>`;
       fileInputFallback.invokeFileInput();
     }
   });
