@@ -15,14 +15,11 @@ const availableVideoInputs = [];
 let currCamIndex = 0;
 let camToggleElem;
 
-function getConstraints() {
-  return { audio: false, video: { facingMode: 'environment', deviceId: cameraId } }; // facingMode is not yet working in browsers
-}
+const constraints = { audio: false, video: { facingMode: 'environment', deviceId: cameraId } }; // facingMode is not yet working in browsers
 
 /* 1. */
 export function cameraInit() {
   // console.log(`camera init:camerId is: ${cameraId}`);
-  // console.log(getConstraints());
   return new Promise((resolve, reject) => {
     function cameraSuccess(stream) {
       videoTrack = stream.getVideoTracks();
@@ -31,7 +28,7 @@ export function cameraInit() {
     function cameraFail(err) {
       reject(err);
     }
-    navigator.mediaDevices.getUserMedia(getConstraints())
+    navigator.mediaDevices.getUserMedia(constraints)
       .then(cameraSuccess)
       .catch(cameraFail);
   });
