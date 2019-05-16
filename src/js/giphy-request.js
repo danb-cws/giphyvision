@@ -11,7 +11,7 @@ export default function giphyRequest(term) {
   }
   config.uiStatusElem.innerHTML = `Giphyfying: ${term}...`;
 
-  searchString = `${config.GIPHY_API_URL}?s=${encodeURI(term)}&api_key=${config.GIPHY_API_KEY}`;
+  searchString = `${config.GIPHY_API_URL}?s=${encodeURI(term)}&api_key=${config.GIPHY_API_KEY}&withCredentials=false`;
 
   fetch(searchString).then((response) => {
     if (response.ok) {
