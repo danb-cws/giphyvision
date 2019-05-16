@@ -9,7 +9,7 @@ import '../sass/cam-toggle.scss';
 import * as config from './giphyvision-config';
 import './get-user-media-polyfill';
 
-let cameraId;
+let cameraId = 0;
 let videoTrack;
 const availableVideoInputs = [];
 let currCamIndex = 0;
@@ -51,20 +51,21 @@ function cycleCameras(e) {
   e.preventDefault();
   cameraId = availableVideoInputs[currCamIndex].deviceId;
   videoTrack[0].stop();
-  cameraInit().then((response) => {
-    // config.uiVideoElem.src = window.URL.createObjectURL(response);
-    config.uiVideoElem.srcObject = response;
-  });
   if (currCamIndex < (availableVideoInputs.length - 1)) { // cycle through cameras
     currCamIndex += 1;
   } else {
     currCamIndex = 0;
   }
+  cameraInit().then((response) => {
+    // config.uiVideoElem.src = window.URL.createObjectURL(response);
+    config.uiVideoElem.srcObject = response;
+  });
 }
 
 /* 2. */
 export function enumerateDevices() {
-  if (typeof navigator.mediaDevices.enumerateDevices !== 'undefined') {
+  // if (typeof navigator.mediaDevices.enumerateDevices !== 'undefined') {
+  if (navigator.mediaDevices || navigator.mediaDevices.enumerateDevices) {
     navigator.mediaDevices.enumerateDevices()
       .then((devices) => {
         devices.forEach((device) => {
