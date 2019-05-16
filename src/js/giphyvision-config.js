@@ -24,7 +24,7 @@ export const uiCloseAbout = document.querySelector('.close-about');
 export const SERVICE_URL = 'https://giphyvision.herokuapp.com/cloud-vision';
 /* export const SERVICE_URL = 'http://localhost:5000/cloud-vision';*/
 export const GIPHY_API_URL = 'https://api.giphy.com/v1/gifs/translate';
-export const GIPHY_API_KEY = 'dc6zaTOxFJmzC';
+export const GIPHY_API_KEY = 'OSWleZiTZ7uBqSAmNK9JP5BWzoSNtuq9';
 
 /* messaging */
 export const errorTxtNoGum = 'Unfortunately your browser doesn\'t (yet) support "getUserMedia", which allows integration of the camera output into the UI.';
