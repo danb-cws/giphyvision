@@ -1,5 +1,7 @@
 # GiphyVision
 
+2021 bugs! 1) camera select not working 2) redraw error in Chrome mobile (on MIUI at least)
+
 Experimenting and learning with device camera, Google Cloud Vision and Giphy API's. Working with Heroku and Firebase, using Webpack workflow and ES6 modules.
 
 Objective: use device camera to take a picture of an object etc, submit to Cloud Vision which will analyse the image and return a description, this will be passed to Giphy which returns a... gif
@@ -7,8 +9,6 @@ Objective: use device camera to take a picture of an object etc, submit to Cloud
 A workaround for  browsers which don't support getUserMedia allows use of a camera shot or local image file via a hidden file input, this route is also for "have no camera" or "camera permission denied" scenarios.
 
 The image is passed as base64 data to a service on Heroku, the code for which is in a separate repo but looks very much like:
-
-    'use strict';// eslint-disable-line   
     
     const http = require('http');
     const gcloud = require('google-cloud')({

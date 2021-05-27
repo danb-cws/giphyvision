@@ -11,6 +11,7 @@ let canvas = '';
 let ctx = '';
 
 export default function captureImage() {
+  console.log('@@@LOOK2');
   if (!canvas) {
     canvas = document.createElement('canvas');
     document.body.appendChild(canvas);
