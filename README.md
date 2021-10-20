@@ -1,12 +1,6 @@
 # GiphyVision
 
-2021 bugs! 1) camera select not working 2) redraw error in Chrome mobile (on MIUI at least)
-
-1)https://github.com/twilio/twilio-video-app-react/issues/355
-
-https://bugs.chromium.org/p/chromium/issues/detail?id=1138823
-
-NOTE fix is supposedly in Chrome M91 release
+giphyvision.firebaseapp.com
 
 Experimenting and learning with device camera, Google Cloud Vision and Giphy API's. Working with Heroku and Firebase, using Webpack workflow and ES6 modules.
 
