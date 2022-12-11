@@ -9,17 +9,18 @@ import '../sass/cam-toggle.scss';
 import * as config from './giphyvision-config';
 import './get-user-media-polyfill';
 
-let cameraId = 0;
+let cameraId = '';
 let videoTrack;
 const availableVideoInputs = [];
 let currCamIndex = 0;
 let camToggleElem;
 
-const constraints = { audio: false, video: { facingMode: 'environment', deviceId: cameraId } }; // facingMode is not yet working in browsers
+const constraints = { audio: false, video: { deviceId: cameraId } };
 
 /* 1. */
 export function cameraInit() {
-  // console.log(`camera init:camerId is: ${cameraId}`);
+  console.log(`camera init:camerId is: ${cameraId}`);
+  console.log('constraints:', constraints);
   return new Promise((resolve, reject) => {
     function cameraSuccess(stream) {
       videoTrack = stream.getVideoTracks();
@@ -48,8 +49,12 @@ export function cameraRestart() {
 }
 
 function cycleCameras(e) {
+  console.log('CAMERA cycle fn: ', e);
+  // eslint-disable-next-line no-debugger
+  // debugger;
   e.preventDefault();
   cameraId = availableVideoInputs[currCamIndex].deviceId;
+  console.log('CAMERA id?: ', cameraId);
   videoTrack[0].stop();
   if (currCamIndex < (availableVideoInputs.length - 1)) { // cycle through cameras
     currCamIndex += 1;
@@ -64,11 +69,13 @@ function cycleCameras(e) {
 
 /* 2. */
 export function enumerateDevices() {
+  console.log('CAMERA enumerateDevices:');
   // if (typeof navigator.mediaDevices.enumerateDevices !== 'undefined') {
   if (navigator.mediaDevices || navigator.mediaDevices.enumerateDevices) {
     navigator.mediaDevices.enumerateDevices()
       .then((devices) => {
         devices.forEach((device) => {
+          console.log('CAMERA ed: ', device);
           if (device.kind === 'videoinput') {
             availableVideoInputs.push(device);
             if (device.label.indexOf('back' || 'rear')) { // then set as default
