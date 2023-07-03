@@ -1,5 +1,7 @@
 # GiphyVision
 
+SAD FAIL :( - Heroku killed off their free Node hosting tier
+
 2021 bugs! 1) camera select not working 2) redraw error in Chrome mobile (NOTE fix for 2 is in Chrome M91 release)
 
 1)https://github.com/twilio/twilio-video-app-react/issues/355
